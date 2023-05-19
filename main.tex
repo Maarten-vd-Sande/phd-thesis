@@ -1,0 +1,67 @@
+\documentclass{book}
+
+\usepackage{graphicx}  % Required for inserting images
+\usepackage{biblatex}  % Imports biblatex package
+\usepackage{float}     % put images here
+\addbibresource{bibliography.bib} % Import the bibliography file
+% \usepackage{ragged2e}  % justify text
+\usepackage{amsmath,amssymb}  % math stuff
+\usepackage[margin=0.75in]{geometry}  % margin
+\raggedbottom
+
+\title{PhD thesis}
+\author{Maarten van der Sande}
+\date{May 2023}
+
+\makeatletter
+\newcommand{\chapterauthor}[1]{%
+  {\parindent0pt\vspace*{-25pt}%
+  \linespread{1.1}\large\scshape#1%
+  \par\nobreak\vspace*{35pt}}
+  \@afterheading%
+}
+\makeatother
+\newcommand{\beginsupplement}{
+    \setcounter{table}{0}
+    \renewcommand{\thetable}{S\thechapter.\arabic{table}}%
+    \setcounter{figure}{0}
+    \renewcommand{\thefigure}{S\thechapter.\arabic{figure}}%
+}
+\newcommand{\closesupplement}{
+    \renewcommand{\thetable}{\thechapter.\arabic{table}}
+    \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+}
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\chapter{General introduction}
+\include{ch1.Introduction/text}
+
+
+\chapter{Computational approaches to understand transcription regulation in development}
+% \chaptermark{Understanding transcription regulation in development}
+\chapterauthor{Maarten van der Sande*, Siebren Fr{\"o}lich*, Simon J. van Heeringen}
+\include{ch2.compapproach/text}
+
+\chapter{Seq2science}
+\chapterauthor{Maarten van der Sande*, Siebren Fr{\"o}lich*, Tilman Sch{\"a}fers, Jos Smits, Rebecca R. Snabel, Simon J. van Heeringen}
+
+\chapter{Crucial controls missing in comparative studies with regards to the phylotypic stage}
+% \chaptermark{The phylotypic stage}
+\chapterauthor{Maarten van der Sande, Marlien Kolmus, Gert Jan C. Veenstra, Simon J. van Heeringen}
+\include{ch4.hourglass/text}
+
+\chapter{Scepia}
+
+\chapter{Discussion}
+\include{ch6.discussion/text}
+
+\chapter{Appendix}
+\include{ch7.appendix/works}
+\include{ch7.appendix/references}
+
+\end{document}
