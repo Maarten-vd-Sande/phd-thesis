@@ -1,43 +1,40 @@
-\section{Central dogma of molecular biology}
+\section{The central dogma of molecular biology}
 
-DNA might just be the most well-known concept of modern biology. 
-We are all familiar with the concept of DNA. It is the heritable part. It is widely discussed in schools and in the news. Such as genetically modified foods. However, what and how DNA actually "does" is lesser known. An important aspect to understand is the central dogma of molecular biology.
-
-Embryonic development, single cell, to complex multicellular organism. All the same DNA!
-
-The central dogma of molecular biology describes the flow of genetic information within a biological system. It outlines the basic processes by which genetic information is converted into functional proteins in living organisms. The central dogma can be summarized in three main steps: DNA replication, transcription, and translation.
-
-DNA Replication: DNA (deoxyribonucleic acid) is the molecule that carries the genetic information in cells. During DNA replication, the double-stranded DNA molecule unwinds, and each strand serves as a template for the synthesis of a new complementary strand. This process ensures that each new cell receives an identical copy of the genetic material during cell division.
-
-Transcription: Transcription is the process by which the genetic information in DNA is used to synthesize RNA (ribonucleic acid). It occurs in the nucleus of eukaryotic cells and the cytoplasm of prokaryotic cells. During transcription, an enzyme called RNA polymerase binds to a specific region of DNA called the promoter and "reads" the DNA sequence. It then assembles a complementary RNA molecule, known as messenger RNA (mRNA), using the base pairing rules (A with U, T with A, G with C, and C with G). The mRNA molecule is a copy of a specific gene and carries the information to the next step.
-
-Translation: Translation is the process by which the information encoded in the mRNA molecule is used to synthesize proteins. It takes place in the cytoplasm, specifically on ribosomes. The mRNA molecule serves as a template for the assembly of amino acids in a specific order to form a protein. Groups of three nucleotides on the mRNA, called codons, correspond to specific amino acids or stop signals. Transfer RNA (tRNA) molecules carry the appropriate amino acids and bind to the mRNA codons through complementary base pairing. As the ribosome moves along the mRNA, the amino acids carried by the tRNA molecules are joined together to form a polypeptide chain. This chain then folds into a functional protein.
-
-In summary, the central dogma describes the flow of genetic information from DNA replication to transcription and ultimately translation, resulting in the synthesis of proteins. This process is fundamental to the functioning and development of all living organisms.
+The human body is formed by a collection of 37,000,000,000,000 cells\cite{Bianconi2013}, with each cell containing approximately 2 meters of DNA. Astoundingly, this means that our bodies house over 74,000,000,000 kilometers of DNA, which is equivalent to almost 250 round trips to the sun! Our DNA is organized into 20,000 genes, spread across 23 distinct structures called chromosomes. What makes all this even more intriguing is that all cells within our body possess exactly the same DNA, yet they exhibit remarkable diversity and specialization. How does this single set of instructions give rise to such diverse cell types? What is the role of DNA during (embryonic) development? And how does this process compare across different species? To better appreciate this fascinating phenomenon, it is crucial to understand the central dogma of molecular biology (fig. \ref{fig:central_dogma}).
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{ch1.Introduction/imgs/central_dogma.png}
-    \caption{Caption}
+    \caption{The central dogma of molecular biology. Solid arrows indicate the general flow of information in the system, and dotted arrows special cases. TODO make mRNA RNA }
     \label{fig:central_dogma}
 \end{figure}
 
-\subsection{Transcription}
+The central dogma of molecular biology describes the flow of genetic information within a biological system. Whereas in a computer information is stored in bits, which can be either zero (0) or one (1), genetic information is stored in nucleotides, which can be either adenine (A), cytosine (C), guanine (G), or thymine (T). DNA, which stands for deoxyribonucleic acid, is composed of two large strands of these nucleotides that together form a double helix. Both strands contain the same information, but where there is a nucleotide A on one strand, there is always a corresponding nucleotide T on the other, and similarly for C and G. RNA, on the other hand, is a similar molecule but is typically single-stranded. It is transcribed from DNA and shares a similar nucleotide composition but replaces thymine (T) with uracil (U). RNA, as an intermediate molecule, plays a vital role in the central dogma of molecular biology, serving as the bridge between DNA and proteins. Through the process of translation, the information encoded in RNA is decoded and used to assemble amino acids in chains, ultimately resulting in the synthesis of proteins. Proteins carry out various tasks in our bodies, such as enabling chemical reactions, transporting other molecules, providing structure, and acting as regulators of transcription and translation of genes.
 
-\begin{figure}[hbtp]
-    \includegraphics[height=0.9\textheight]{ch1.Introduction/imgs/transcription.png}
-    \caption{Caption}
-    \label{fig:transcription}
-\end{figure}
+% \subsection{Transcription}
 
-\subsection{Translation}
+% \begin{figure}[hbtp]
+%     \includegraphics[height=0.5\textheight]{ch1.Introduction/imgs/transcription.png}
+%     \caption{Caption}
+%     \label{fig:transcription}
+% \end{figure}
 
-\begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch1.Introduction/imgs/translation.png}
-    \caption{Caption}
-    \label{fig:translation}
-\end{figure}
+% \subsection{Translation}
 
-\subsection{Chromatin}
+% \begin{figure}[H]
+%     \includegraphics[width=\linewidth]{ch1.Introduction/imgs/translation.png}
+%     \caption{Caption}
+%     \label{fig:translation}
+% \end{figure}
+
+\section{Gene expression regulation}
+
+A skin cell makes use of a completely different set of genes than a liver cell. This is possible due to the tight regulation of gene expression by these cells. To regulate their gene expression cells have a wide array of tools at their disposal. 
+
+\subsection{Transcription Factors}
+
+For a gene to be transcribed into
+
+\subsection{Chromatin context}
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{ch1.Introduction/imgs/histones.png}
@@ -51,19 +48,21 @@ In summary, the central dogma describes the flow of genetic information from DNA
     \label{fig:accessibility}
 \end{figure}
 
-\subsection{Transcription Factors}
 
 
-\subsection{other regulatory modes}
+\subsection{other gene regulatory modes}
 % \subsubsection{mRNA degradation}
 % \subsubsection{Post-transcriptional modification}
 % \subsubsection{RNA transport}
 % \subsubsection{Signal transduction}
-\section{Gene regulatory networks}
+
+\subsection{Gene regulatory networks}
+
+
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{ch1.Introduction/imgs/network.png}
-    \caption{https://en.wikipedia.org/wiki/Mbu\_pufferfish\#/media/File:Tetraodon\_mbu\_2.jpg}
+    \caption{(\textbf{A}) standard way of representing gene-gene interactions. Gene $\alpha$ upregulates gene $\beta$, and gene $\gamma$ downregulates gene $\delta$. (\textbf{B}) Gierer-Meinhardt gene regulatory network, where gene $\alpha$ upregulates itself and gene $\beta$, and gene $\beta$ downregulates gene $\alpha$. (\textbf{C}) Simulation of the Gierer-Meinhardt gene regulatory network in a spatial context. (\textbf{D}) A Mbuna pufferfish with Turing pattern. Image taken from Tiia Monto from https://en.wikipedia.org/wiki/Mbu\_pufferfish\#/media/File:Tetraodon\_mbu\_2.jpg}
     \label{fig:network}
 \end{figure}
 
@@ -77,11 +76,14 @@ In summary, the central dogma describes the flow of genetic information from DNA
 
 \section{Development}
 
+A single fertilized human egg cell develops into a complex collection of 37 trillion cells by the time the individual reaches adulthood. All the information necessary for this development is present at fertilization. How does each cell know what to develop into? Apart from sensing its direct neighborhood, all the information is contained.
+
 \section{Evolutionary development (evo-devo)}
 
 
 
 \subsection{evo-devo gene toolkit}
+
 \subsection{The hourglass model and the phylotypic stage}
 
 \begin{figure}[H]
@@ -90,7 +92,9 @@ In summary, the central dogma describes the flow of genetic information from DNA
     \label{fig:haeckel}
 \end{figure}
 
-\section{(Computational) genomic analyses}
+\section{Computational biology}
+
+The field of computational biology concerns itself with the analysis of the enormous quantities of data that molecular biology produces. 
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{ch1.Introduction/imgs/analysis.png}

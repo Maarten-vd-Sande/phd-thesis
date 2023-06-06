@@ -1,10 +1,17 @@
-\documentclass[22pt]{book}
+% \documentclass[13pt]{book}
+\documentclass[14pt]{extbook}
 
 \usepackage{graphicx}  % Required for inserting images
-\usepackage{biblatex}  % Imports biblatex package
-\usepackage{float}     % put images here
+\usepackage[
+    natbib=true,
+    style=numeric,
+    sorting=none]{biblatex}  % Imports biblatex package
 \addbibresource{bibliography.bib} % Import the bibliography file
+\let\cite=\supercite
+
+\usepackage{float}     % put images here
 % \usepackage{ragged2e}  % justify text
+\usepackage{url}
 \usepackage{amsmath,amssymb}  % math stuff
 \usepackage[margin=0.75in]{geometry}  % margin
 \raggedbottom
