@@ -1,13 +1,19 @@
 % \documentclass[13pt]{book}
-\documentclass[14pt]{extbook}
+% \documentclass[13pt]{extbook}
+\documentclass{book}
+\usepackage[fontsize=13pt]{fontsize}
 
 \usepackage{graphicx}  % Required for inserting images
 \usepackage[
     natbib=true,
     style=numeric,
-    sorting=none]{biblatex}  % Imports biblatex package
+    sorting=none,
+    url=false
+    ]{biblatex}  % Imports biblatex package
 \addbibresource{bibliography.bib} % Import the bibliography file
 \let\cite=\supercite
+
+\usepackage{hvfloat}
 
 \usepackage{float}     % put images here
 % \usepackage{ragged2e}  % justify text
@@ -60,9 +66,10 @@
 
 \chapter{Seq2science}
 \chapterauthor{Maarten van der Sande*, Siebren Fr{\"o}lich*, Tilman Sch{\"a}fers, Jos Smits, Rebecca R. Snabel, Simon J. van Heeringen}
+\include{ch3.seq2science/text}
 
-\chapter{Crucial controls missing in comparative studies with regards to the phylotypic stage}
-% \chaptermark{The phylotypic stage}
+\chapter{The phylotypic stage is undefined; crucial controls missing for comparative studies}
+\chaptermark{The phylotypic stage is undefined}
 \chapterauthor{Maarten van der Sande, Marlien Kolmus, Gert Jan C. Veenstra, Simon J. van Heeringen}
 \include{ch4.hourglass/text}
 
