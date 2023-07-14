@@ -1,10 +1,13 @@
+\chapter{General introduction}\thumbforchapter
+\newpage
+
 \section{The central dogma of molecular biology}
 
 The human body is formed by a collection of 37,000,000,000,000 cells\cite{Bianconi2013}, with each cell containing approximately 2 meters of DNA. This means that our bodies house an astounding 74,000,000,000 kilometers of DNA, which is equivalent to almost 250 round trips to the sun! Our DNA is organized into 20,000 genes, spread across 23 distinct structures called chromosomes. What makes all this even more intriguing is that all cells within our body possess exactly the same DNA, yet they exhibit remarkable diversity and specialization. How does this single set of instructions give rise to such diverse cell types? What is the role of DNA during (embryonic) development? And how does this process compare across different species? To better appreciate these fascinating phenomena, it is crucial to understand the central dogma of molecular biology (fig. \ref{fig:central_dogma}).
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch1.Introduction/imgs/central_dogma.png}
-    \caption{The central dogma of molecular biology. Solid arrows indicate the general flow of information in the system, and dotted arrows special cases. }
+    \includegraphics[width=\linewidth]{ch.introduction/imgs/central_dogma.png}
+    \caption{\textbf{The central dogma of molecular biology.} Solid arrows indicate the general flow of information in the system, and dotted arrows are special cases.}
     \label{fig:central_dogma}
 \end{figure}
 
@@ -15,7 +18,7 @@ Far from all the DNA is transcribed into RNA, and not even all RNA translates to
 % \subsection{Transcription}
 
 % \begin{figure}[hbtp]
-%     \includegraphics[height=0.5\textheight]{ch1.Introduction/imgs/transcription.png}
+%     \includegraphics[height=0.5\textheight]{ch.introduction/imgs/transcription.png}
 %     \caption{Caption}
 %     \label{fig:transcription}
 % \end{figure}
@@ -23,7 +26,7 @@ Far from all the DNA is transcribed into RNA, and not even all RNA translates to
 % \subsection{Translation}
 
 % \begin{figure}[H]
-%     \includegraphics[width=\linewidth]{ch1.Introduction/imgs/translation.png}
+%     \includegraphics[width=\linewidth]{ch.introduction/imgs/translation.png}
 %     \caption{Caption}
 %     \label{fig:translation}
 % \end{figure}
@@ -43,7 +46,7 @@ DNA transcription requires a wide array of steps. Slightly upstream of a gene is
 motifs needed
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch1.Introduction/imgs/transcription_factor.png}
+    \includegraphics[width=\linewidth]{ch.introduction/imgs/transcription_factor.png}
     \caption{Caption}
     \label{fig:TF}
 \end{figure}
@@ -53,29 +56,32 @@ motifs needed
 To fit 2 meters of DNA fold it
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch1.Introduction/imgs/histones.png}
+    \includegraphics[width=\linewidth]{ch.introduction/imgs/histones.png}
     \caption{Caption}
     \label{fig:histones}
 \end{figure}
 
-should there be text here?
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{ch.introduction/imgs/accessibility_horizontal.png}
+    \caption{Caption}
+    \label{fig:accessibility}
+\end{figure}
 
-% \hvFloat[doublePage,capWidth=n,
-% capPos=right,capVPos=top,bindCorr=0.0cm]{figure}
-% {\includegraphics[width=1.9\textwidth]
-% {ch1.Introduction/imgs/accessibility_horizontal.png}}
-% [accessibility schematic overview]
-% {TODO caption}{fig:accessibility}
-\hvFloat[doublePage,sameHeight]%
-    {figure}%
-    {\includegraphics[doublefullPage]{ch1.Introduction/imgs/accessibility_horizontal.png}}%
-    [A doublepage image with a caption on the right side of the right part.]%
-    {A caption for a double-sided image that will be placed on the right side of the
-    right-hand part of the illustration. The illustration begins on the left edge of
-    the paper. A short form is used for the LOF.
-    The parameter is \texttt{doublePage}}%
+\hvFloat[doublePage,capWidth=n,
+capPos=right,capVPos=top,bindCorr=0.0cm]{figure}
+{\includegraphics[width=1.6\textwidth]
+{ch.introduction/imgs/accessibility_horizontal.png}}
+[accessibility schematic overview]
+{DNA accessibility regulates whether proteins can bind or not. Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor}{fig:accessibility}
+% \hvFloat[doublePage,sameHeight]%
+%     {figure}%
+%     {\includegraphics[doublefullPage]{ch.introduction/imgs/accessibility_horizontal.png}}%
+%     [A doublepage image with a caption on the right side of the right part.]%
+%     {A caption for a double-sided image that will be placed on the right side of the
+%     right-hand part of the illustration. The illustration begins on the left edge of
+%     the paper. A short form is used for the LOF.
+%     The parameter is \texttt{doublePage}}%
     {fig:doublePage0sH}
-should there be text here?
 
 \subsection{Other gene regulatory modes}
 % \subsubsection{mRNA degradation}
@@ -92,7 +98,7 @@ The first gene regulatory network was proposed by Roy Britten and Eric Davidson 
 Gene regulatory networks are often modeled and visualized with direct gene-gene interactions (fig. \ref{fig:network}A). This means for instance that the protein product of gene $\alpha$ directly regulates the protein product of gene $\beta$, ignoring all steps in between. Even though this is a gross oversimplification of gene-gene interactions, these simple models can already exhibit complex behavior. One of the older and well-known examples of this complex behavior are Turing patterns, discovered by the famous computer scientist Alan Turing\cite{Turing1952}. We consider a system of two genes, gene $\alpha$ and gene $\beta$, where gene $\alpha$ upregulates itself and gene $\beta$, but gene $\beta$ inhibits gene $\alpha$ (fig. \ref{fig:network}B). When modeling this simple two-gene network in a spatial setting it produces complex patterns (fig. \ref{fig:network}C), of which similar patterns can be observed in nature (fig. \ref{fig:network}D).
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch1.Introduction/imgs/network.png}
+    \includegraphics[width=\linewidth]{ch.introduction/imgs/network.png}
     \caption{(\textbf{A}) standard way of representing gene-gene interactions. Gene $\alpha$ upregulates gene $\beta$, and gene $\gamma$ downregulates gene $\delta$. (\textbf{B}) Gierer-Meinhardt gene regulatory network, where gene $\alpha$ upregulates itself and gene $\beta$, and gene $\beta$ downregulates gene $\alpha$. (\textbf{C}) Simulation of the Gierer-Meinhardt gene regulatory network in a spatial context. (\textbf{D}) A Mbuna pufferfish with Turing pattern. Image from Tiia Monto(https://en.wikipedia.org/wiki/Mbu\_pufferfish\#/media/File:Tetraodon\_mbu\_2.jpg)}
     \label{fig:network}
 \end{figure}
@@ -101,30 +107,44 @@ TODO more recent / complex gene networks.
 
 \section{Evolutionary development (evo-devo)}
 
-A single fertilized egg cell develops into a complex collection of trillions of cells by the time the individual reaches adulthood. All the information necessary for this development is present at fertilization. How does each cell know what to develop into? 
+A single fertilized egg cell develops into a complex collection of trillions of cells by the time the individual reaches adulthood. How does each cell know what to develop into? In the 1980s scientists discovered a set of genes in fruit flies responsible for strange transformations. A mutation in one of these genes caused flies to grow legs instead of antennae from their mouths\cite{Schneuwly1987}, or it caused flies to develop a second pair of wings\cite{Weatherbee1998}. This work showed that antennae cells contain all the information necessary to build legs. This set of genes is now known as the HOX genes.
 
-In the 1980s scientists discovered 
+The development of fruit flies starts as worm-like creatures build up from multiple segments. Hox genes in different segments determine each segment's identity and guide its growth. For example, HOX genes in the head control mouth parts and antennae, while HOX genes in the thorax direct leg and wing development. Interestingly, the order of HOX genes on the chromosome is the same as the order in which they appear along the segments of the body. 
 
-\begin{figure}[H]
-    \includegraphics[width=0.5\linewidth]{ch1.Introduction/imgs/phylogeny.png}
-    \caption{caption}
-    \label{fig:phylogeny}
-\end{figure}
+Nearly all animals have HOX genes.
+  
+% https://learn.genetics.utah.edu/content/basics/hoxgenes#:~:text=Fruit%20flies%20begin%20life%20as,what%20structures%20it%20should%20grow.
 
-\subsection{evo-devo gene toolkit}
+% \begin{figure}[H]
+%     \includegraphics[width=0.5\linewidth]{ch.introduction/imgs/phylogeny.png}
+%     \caption{caption}
+%     \label{fig:phylogeny}
+% \end{figure}
+
+% \subsection{evo-devo gene toolkit}
 
 \subsection{The hourglass model and the phylotypic stage}
 
 
+% \hvFloat[doublePage,sameHeight]%
+%     {figure}%
+%     {\includegraphics[doublefullPage]{ch.introduction/imgs/haeckel.png}}%
+%     [A doublepage image with a caption on the right side of the right part.]%
+%     {A caption for a double-sided image that will be placed on the right side of the
+%     right-hand part of the illustration. The illustration begins on the left edge of
+%     the paper. A short form is used for the LOF.
+%     The parameter is \texttt{doublePage}}%
+%     {fig:haeckel}
+
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch1.Introduction/imgs/haeckel.png}
+    \includegraphics[width=\linewidth]{ch.introduction/imgs/haeckel.png}
     \caption{caption}
     \label{fig:haeckel}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch1.Introduction/imgs/hourglass.png}
+    \includegraphics[width=\linewidth]{ch.introduction/imgs/hourglass.png}
     \caption{caption}
     \label{fig:hourglass}
 \end{figure}
@@ -134,7 +154,7 @@ In the 1980s scientists discovered
 The field of computational biology concerns itself with the analysis of the enormous quantities of data that molecular biology produces. In this thesis the analysis of three different sequencing assays 
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch1.Introduction/imgs/analysis.png}
+    \includegraphics[width=\linewidth]{ch.introduction/imgs/analysis.png}
     \caption{TODO add DNAse}
     \label{fig:analysis}
 \end{figure}
@@ -147,12 +167,14 @@ Whereas originally
 
 The expression and regulation of (embryonic) development is a widely studied topic. It is less common, but still common, to study gene regulation in the context of evolution. Wh
 
-In \textbf{chapter 2} we review the current computational approaches to model and understand gene regulatory networks. Moreover, we highlight three recent developments for gene regulatory network inference which improve the power of these methods.
+In \textbf{chapter 2} we review the current computational approaches to model and understand gene regulatory networks in development. Current gene regulatory network inference methods perform poorly, and thus a new approach is needed. We highlight three recent developments for gene regulatory network inference which we expect to improve the power of these methods; multi-omics networks, single-cell data, and artificial neural networks. Multi-omics data partially solve the curse of dimensionality by constraining the problem and providing more data. Regular sequencing measures the compounded signal of multiple cell types, single-cell can separate the signal per cell type, so cell-type-specific networks can be made and the data contains purer signal. Artificial neural networks can model more complex gene-gene interactions than the current approaches. By combining these three approaches we expect future gene regulatory network inference methods to predict better networks.
 
-In \textbf{chapter 3} we discuss the implementation of seq2science, a next-generation pre-processing workflow. Seq2science supports
+In \textbf{chapter 3} we discuss the implementation of seq2science, a next-generation pre-processing workflow. Seq2science supports some of the most common assays, such as RNA-seq, ChIP-seq, and ATAC-seq, integrates with public databases, and reports an extensive quality control report. Seq2science has been tested on a wide array of different species and genome assemblies, and we show examples of common analyses that seq2science supports out of the box. Seq2science has an extensive user base\cite{Bright_2021,Xu_2020,Wester2021,SantosBarriopedro2021,Heuts2023,Tholen2023,Harlaar2022,LunaVelez2023,Neikes2023,Vierboom2021,Smits2020,Smits2022,Heuts2022,Rother2023}, is downloaded over 40K times through Bioconda, and has more than 120 ``stars'' on GitHub.
 
-In \textbf{chapter 4} we discuss the molecular basis of the phylotypic stage and its related models...
+In \textbf{chapter 4} we discuss the implementation of Qnorm,  a Python quantile normalization package. Python did not have a quantile normalization package yet, and the implementations on fora about how to do quantile normalization did not resolve ties properly. Qnorm is fast-ish and scales to infinitely large tables as it can swap memory to disk.
 
-In \textbf{chapter 5} 
+In \textbf{chapter 5} we discuss the molecular basis of the phylotypic stage and its related models. We explain how the current definition and analyses of the phylotypic stage are ambiguous, as they do not distinguish within-species effects from between-species effects. For this reason, we propose that any study of the phylotypic stage includes at least a within-species comparison, a within-phylum comparison, and a between-phyla comparison. By applying these comparisons we find important flaws in the interpretation of previous results. We highlight three examples where the within-species pattern is enough to explain the between-species pattern. Moreover, we find that the mid-developmental transition is a statistical artefact. All in all, we question the validity of current approaches to study the phylotypic stage, as they are gross oversimplifications of the biological complexity during development.
 
 In \textbf{chapter 6} 
+
+In \textbf{chapter 7} 

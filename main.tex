@@ -6,7 +6,7 @@
 \usepackage{graphicx}  % Required for inserting images
 \usepackage[
     natbib=true,
-    style=numeric,
+    style=numeric-comp,
     sorting=none,
     url=false
     ]{biblatex}  % Imports biblatex package
@@ -22,10 +22,16 @@
 \usepackage[margin=0.75in]{geometry}  % margin
 \raggedbottom
 
-\title{PhD thesis}
+\usepackage{listings}
+\usepackage{mycolors}
+
+\usepackage[hidelinks]{hyperref}
+
+\title{Development computational}
 \author{Maarten van der Sande}
 \date{May 2023}
 
+\usepackage[Conny]{fncychap}
 \makeatletter
 \newcommand{\chapterauthor}[1]{%
   {\parindent0pt\vspace*{-25pt}%
@@ -44,43 +50,80 @@
     \renewcommand{\thetable}{\thechapter.\arabic{table}}
     \renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 }
+ 
+\lstdefinelanguage{Python}{
+    backgroundcolor=\color{python_backcolor},   
+    comment=[l]{\#},
+    commentstyle=\color{python_comment},
+    keywords=[1]{class, import},
+    keywordstyle=[1]\color{python_keywords1},
+    keywords=[2]{print},
+    keywordstyle=[2]\color{python_keywords2},
+    string=[b]{'},
+    stringstyle=\color{python_string}\ttfamily,
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=none,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
 
-% table of content
-% \setcounter{tocdepth}{1}
+\usepackage{mdframed}
 
+\lstdefinelanguage{bash}{
+    basicstyle=\color{bash_backcolor},
+    backgroundcolor=\color{bash_backcolor},   
+    commentstyle=\color{codegreen},
+    keywords=[1]{user@comp},
+    keywordstyle=[1]\color{bash_keywords1},
+    keywords=[2]{~},
+    keywordstyle=[2]\color{bash_keywords2},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{red}\ttfamily,
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=none,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\newcommand{\fakesection}[1]{%
+  \par\refstepcounter{section}% Increase section counter
+  \sectionmark{#1}% Add section mark (header)
+  \addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}% Add section to ToC
+  % Add more content here, if needed.
+}
+
+\newcommand*\cleartoleftpage{%
+  \clearpage
+  \ifodd\value{page}\hbox{}\newpage\fi
+}
+
+\usepackage[distance={10mm}]{thumbs}
+\pagenumbering{arabic}
+\newcommand{\thumbforchapter}{\addthumb{Chapter \thechapter}{\Large{\thechapter}}{white}{gray}}
 
 \begin{document}
-
-\maketitle
-
-\tableofcontents
-
-\chapter{General introduction}
-\include{ch1.Introduction/text}
-
-
-\chapter{Computational approaches to understand transcription regulation in development}
-% \chaptermark{Understanding transcription regulation in development}
-\chapterauthor{Maarten van der Sande*, Siebren Fr{\"o}lich*, Simon J. van Heeringen}
-\include{ch2.compapproach/text}
-
-\chapter{Seq2science}
-\chapterauthor{Maarten van der Sande*, Siebren Fr{\"o}lich*, Tilman Sch{\"a}fers, Jos Smits, Rebecca R. Snabel, Simon J. van Heeringen}
-\include{ch3.seq2science/text}
-
-\chapter{The phylotypic stage is undefined; crucial controls missing for comparative studies}
-\chaptermark{The phylotypic stage is undefined}
-\chapterauthor{Maarten van der Sande, Marlien Kolmus, Gert Jan C. Veenstra, Simon J. van Heeringen}
-\include{ch4.hourglass/text}
-
-\chapter{Scepia}
-
-\chapter{General discussion}
-\include{ch6.discussion/text}
-
-\chapter{Appendix}
-\include{ch7.appendix/CV}
-\include{ch7.appendix/list_of_pubs}
-\include{ch7.appendix/references}
+% \include{ch.prefix/text}
+% \include{ch.introduction/text}
+% \include{ch.compapproach/text}
+% \include{ch.seq2science/text}
+% \include{ch.qnorm/text}
+\include{ch.hourglass/text}
+% \include{ch.scepia/text}
+% \include{ch.discussion/text}
+% \include{ch.appendix/text}
 
 \end{document}

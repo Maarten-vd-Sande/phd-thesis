@@ -1,3 +1,7 @@
+\chapter{Computational approaches to understand transcription regulation in development}\thumbforchapter
+\chaptermark{understanding transcription regulation in development}
+\chapterauthor{Maarten van der Sande*, Siebren Fr{\"o}lich*, Simon J. van Heeringen}
+\newpage
 \section{Abstract}
 
 Gene regulatory networks (GRNs) serve as useful abstractions to understand transcriptional dynamics in developmental systems. Computational prediction of GRNs has been successfully applied to genome-wide gene expression measurements with the advent of microarrays and RNA-sequencing. However, these inferred networks are inaccurate and mostly based on correlative rather than causative interactions. In this review, we highlight three approaches that significantly impact GRN inference: (1) moving from one genome-wide functional modality, gene expression, to multi-omics, (2) single cell sequencing, to measure cell type-specific signals and predict context-specific GRNs, and (3) neural networks as flexible models. Together, these experimental and computational developments have the potential to significantly impact the quality of inferred GRNs. Ultimately, accurately modeling the regulatory interactions between transcription factors and their target genes will be essential to understand the role of transcription factors in driving developmental gene expression programs and to derive testable hypotheses for validation.
@@ -14,7 +18,7 @@ Computational inference of genome-wide GRNs was made possible with the advent of
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{ch2.compapproach/images/compapproach(1).png}
+	\includegraphics[width=0.8\textwidth]{ch.compapproach/images/compapproach.png}
 	\caption{\label{fig:compapproach}\textbf{Schematic overview of different gene regulatory network inference approaches.} \textbf{(A)} Classical approaches, e.g. correlation, regression or mutual information, can be applied on gene expression data to generate undirected co-expression networks. With prior knowledge about TFs the directionality between TF and target gene can be inferred, however, the directionality between two TFs cannot be established. \textbf{(B)} More recent approaches combine multiple types of genome-wide functional data (multi-omics), with either a classical approach or neural networks to identify directed gene regulatory networks. Single cell sequencing allows for the identification of cell type specific regulatory networks.}
 \end{figure}
 
