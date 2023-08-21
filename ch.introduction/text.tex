@@ -17,33 +17,43 @@ Far from all the human DNA is transcribed to RNA, and not even all RNA translate
 
 \section{Gene expression regulation}
 
-Even though a skin cell and a liver cell house identical DNA, they make use of completely different sets of genes. This is possible due to the tight regulation of gene expression, for which cells have a wide array of tools at their disposal. 
+Even though a skin cell and a liver cell house identical DNA, they use completely different sets of genes. This is possible due to the tight regulation of gene expression, for which cells have a wide array of tools at their disposal. This thesis mainly focuses on transcription factors and their related chromatin context, which will be discussed in more detail.
 
 \subsection{Transcription Factors}
 
-At the start of each gene sits a promoter (fig. \ref{fig:TF}A). At the promoter general transcription factors bind, which in turn recruit RNA polymerase II (RNAPII). RNAPII is the protein complex responsible for transription, and in turn 
+A typical gene consists of its coding parts (exons), noncoding parts (introns), and the start signal (promoter). The promoter functions as a location where general transcription factors bind, which in turn recruit RNA polymerase II (RNAPII). RNAPII is the protein complex responsible for transcription, and is responsible for reading out the DNA gene and converting it to RNA.
 
-Before DNA transcription can occur, 
+The presence of general transcription factors and a promoter is generally enough for transcription, although on a low level\cite{Haberle2018}. Transcription regulation, and by extension gene expression regulation, occurs through transcription factors and enhancers (figure \ref{fig:TF}. Enhancers are regions on the DNA where transcription factors can bind. These transcription factors act like switches, determining whether the gene should be turned up or down in response to various signals and conditions.
 
-DNA transcription requires a wide array of steps. Slightly upstream of a gene is a promoter. To this piece of DNA proteins bind that initiate transcription.
-
-motifs needed
+Transcription factors bound to 
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch.introduction/imgs/transcription_factor.png}
+    \center
+    \includegraphics[width=0.65\linewidth]{ch.introduction/imgs/transcription_factor.png}
     \caption{Caption}
     \label{fig:TF}
 \end{figure}
 
 \subsection{Chromatin context}
 
-To fit 2 meters of DNA fold it
+To be able to fit two meters of DNA into each cell, the DNA needs to be carefully packaged. Chromatin refers to the complex of DNA, proteins, and RNA that makes up the genetic material within a cell's nucleus. It is like the packaging material for DNA, providing structural support and helping to organize the genetic material. The primary components of chromatin are DNA and histone proteins.
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch.introduction/imgs/histones.png}
+    \center
+    \includegraphics[width=0.65\linewidth]{ch.introduction/imgs/histones.png}
     \caption{Caption}
     \label{fig:histones}
 \end{figure}
+
+Histones are proteins around which DNA is tightly wrapped. DNA wraps around these histones like thread on a spool, forming a structure called a nucleosome. Nucleosomes are the basic units of chromatin.
+
+The chromatin context plays a significant role in gene expression regulation. The DNA in chromatin is tightly wound around histones, which can either promote or inhibit gene expression. Here's how it works:
+
+Histone Modifications: Chemical modifications, like acetylation, methylation, and phosphorylation, can occur on histones. These modifications can influence the structure of chromatin, making it more or less accessible to the cellular machinery that reads genes. For example, acetylation tends to open up the chromatin structure, allowing easier access to the genes and thus promoting their expression.
+
+DNA Methylation: Another important aspect of gene regulation is DNA methylation, where methyl groups are added to certain regions of DNA. DNA methylation can cause genes to be "silenced" or turned off, as it prevents the cellular machinery from binding to the DNA and initiating gene transcription.
+
+The way DNA is folded and packaged in the chromatin structure directly impacts how accessible different regions of DNA are to the cellular machinery responsible for transcription and gene expression. Regions of open chromatin are more accessible and likely to be actively transcribed, while tightly packed regions may be silenced.
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{ch.introduction/imgs/accessibility_horizontal.png}
@@ -51,27 +61,16 @@ To fit 2 meters of DNA fold it
     \label{fig:accessibility}
 \end{figure}
 
-% \hvFloat[doublePage,capWidth=n,
-% capPos=right,capVPos=top,bindCorr=0.0cm]{figure}
-% {\includegraphics[width=1.6\textwidth]
-% {ch.introduction/imgs/accessibility_horizontal.png}}
-% [accessibility schematic overview]
-% {DNA accessibility regulates whether proteins can bind or not. Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor Lorum ipsum lor}{fig:accessibility_wide}
-% \hvFloat[doublePage,sameHeight]%
-%     {figure}%
-%     {\includegraphics[doublefullPage]{ch.introduction/imgs/accessibility_horizontal.png}}%
-%     [A doublepage image with a caption on the right side of the right part.]%
-%     {A caption for a double-sided image that will be placed on the right side of the
-%     right-hand part of the illustration. The illustration begins on the left edge of
-%     the paper. A short form is used for the LOF.
-%     The parameter is \texttt{doublePage}}%
-
 \subsection{Other gene regulatory modes}
+
+There are many other ways gene expression can be regulated. Examples are mRNA degradation regulation. Post-transcriptional modifications such as phosphorylation and symoylation. Signal transduction: cool example Michael Levin with flat worms.
+
 % \subsubsection{mRNA degradation}
 % \subsubsection{Post-transcriptional modification}
 % \subsubsection{RNA transport}
 % \subsubsection{Signal transduction}
- Michael Levin is cool: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3841289/
+Michael Levin is cool: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3841289/
+sumoylation
 
 \subsection{Gene regulatory networks}
 
@@ -89,6 +88,36 @@ Gene regulatory networks come in many forms and shapes, but are often modeled an
 
 Mapping the relations between genes is a hard problem and unfeasible to do by hand. Not only can potentially any gene have an (in)direct effect on any other gene, but the potential interactions also depend on the cell type. The 20.000 human protein-coding genes have 20.000$^2$=400.000.000 potential direct interactions, and if we consider indirect interactions, cell type-specific interactions, and combinatorial interactions the number of potential gene interactions explodes. To infer gene interactions at scale and make sense of the resulting networks we \textit{have} to make use of computational tools. The most common approach so far has been to measure RNA expression in a combination of settings and correlate the RNA expression of genes over these settings \cite{Zhang_2005,Margolin_2006}. Correlations above a certain threshold would indicate an (in)direct gene regulation. Adding more information to these networks, such as the chromatin state around genes\cite{Xu_2020,Kamal_2021}, improves the resulting networks. However, practically all gene regulatory network inference approaches compare cell states (e.g. liver vs skin), so the inferred gene networks are specific for these comparisons. In chapter \textit{TODO XYZ} we discuss the latest developments in grn inference.
 
+\section{Genomics analysis}
+
+A genomics project can be broken down into three main stages: wet lab work, dry lab work, and sequencing. The wet lab phase entails hands-on experimentation with physical materials like chemicals and biological samples. In contrast, the dry lab phase involves computationally interpreting and analyzing the data generated by the wet lab. The sequencing step falls between the wet lab and the dry lab. In this thesis, three different types of sequencing assays have been used and analyzed (ATAC-seq, ChIP-seq, and RNA-seq), and we'll briefly discuss their wet lab, sequencing, and dry lab parts. 
+
+\subsection{wet lab}
+
+Assay for Transposase-Accessible Chromatin using sequencing (ATAC-seq) (CITE ATACSEQ) is a method to measure genome-wide accessibility. Accessible DNA is generally associated with active DNA, and vice versa. ATAC-seq works by adding a protein called tn5 transposase to a sample. This protein then proceeds to randomly cut up the genome. However, if a piece of DNA is inaccessible, for example, because a protein is bound or a histone modification is blocking access, the tn5 can not reach the DNA to cut it. Small DNA sequences thus represent accessible DNA as they could be cut. After treating DNA with tn5, one then isolates the small DNA fragments (+/- 1.000 base pairs long or less), which are then ready to be sequenced.
+
+Chromatin ImmunoPrecipitation sequencing (ChIP) (CITE CHIPSEQ) is an assay to measure proteins in proximity to DNA. These proteins are generally transcription factors, but can also be histone modifications that make the DNA more or less permissive. It works by first fixating (gluing together) the chromatin (DNA and associated proteins) with formaldehyde. Afterward, you break the DNA into smaller pieces of for instance +/- 200 base pairs long. You then add proteins that bind to your protein of interest (antibodies) and filter out all the DNA sequences with bound antibodies. Filtering out the antibodies can be for instance done by magnets if magnetic antibodies were used or XYZ. As the final step, the DNA, proteins, and antibodies need to be separated, and the remaining DNA fragments can be sent for sequencing.
+
+RNA-seq is a method to estimate which gene transcripts are present in a sample and in what quantity. The amount of RNA transcripts of a gene is used as a proxy for both the level of gene regulation as well as for the number of protein product that is present in a sample. RNA-seq works by first filtering out all the RNA in a sample, and then converting the RNA into DNA by reverse transcription (see fig. \ref{fig:central_dogma}. The resulting DNA then represents the number of gene transcripts for a gene were present, and can then be sequenced.
+
+\subsection{Sequencing}
+
+Sequencing is a lab technique used to determine the order of nucleotides of DNA. Many different techniques exist, but Illumina sequencing by synthesis is most common and ill explain. The first step in sequencing is the addition of adapters to the DNA. These adapters are bound to the beginning and end of the DNA strand. The DNA is then spread thinly over a surface, called the flow cell, where the adapters bind to the flow cell. By PCR the DNA is multiplied (PCR), and because of the adapters the multiplied DNA strand stays close to the original location. Then actual sequencing occurs, by adding fluorescently labeled nucleotides one at a time. explain how they work from start to beginning. As nucleotides are incorporated, the fluorescent signal is emitted and detected. The color of the signal corresponds to the type of nucleotide that was incorporated. This step provides the sequencing data for each position along the DNA fragment. During sequencing a camera films the process, where the order of the colors expressed at each spot (TODO use spot before) represents the DNA sequence.
+
+\subsection{dry lab}
+
+After sequencing, one ends up with video file tha (FASTQ) with for each DNA sequence there is a line in the file with the DNA sequence. One first needs to remove the sequencing adapters of these sequences, to then align these reads to the genome. Alignment to the genome is a compute-heavy task, as FASTQ files generally contain several millions of reads. After alignment one ends up with a map that aligns each read to a position in the genome. Generally the next step is to assign features to the genome based on where reads are positioned. For RNA-seq this is easy as we know where the genes are, and we can make a table with the number of reads found for each gene. For ATAC-seq and ChIP-seq experiments we generally do not know the regions of interest yet. So we 
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{ch.introduction/imgs/analysis.png}
+    \caption{TODO}
+    \label{fig:analysis}
+\end{figure}
+
+\subsection{Single cell}
+
+Whereas originally 
+
 \section{Evolutionary development (evo-devo)}
 
 A single fertilized egg cell multiplies and develops into a complex collection of trillions of cells by the time we reach adulthood. How does each cell know where it is positioned in the body and what to develop into? The field of evolutionary development (evo-devo) studies development from an evolutionary point of view. In the 1980s scientists discovered a set of genes in fruit flies, which when mutated, are responsible for strange bodily transformations. A mutation in these genes causes flies to grow legs instead of antennae from their mouths\cite{Schneuwly1987}, or flies to develop a second pair of wings\cite{Weatherbee1998}. This work was revolutionary at its time as it showed that (precursor) antennae cells contain all the information necessary to build legs. The group of genes responsible for these mutations are transcription factors  known as Hox genes.
@@ -96,6 +125,7 @@ A single fertilized egg cell multiplies and develops into a complex collection o
 The embryonic development of a fruit fly starts as a worm-like larva consisting of multiple repeated segments. The gene expression of Hox genes determines each segment's identity and guides its growth. For example, the \textit{lab} hox-gene is expressed at the frontal part of the larva, indicating surrounding cells this area will develop into the mouth of the fly\cite{Hughes2002}. Similarly, the \textit{Antp} hox gene indicates leg formation and is expressed in the mid-section of the larva. Interestingly, Hox genes are found in nearly all animals, where they play an important role in the spatial organization of the organism. What makes Hox genes particularly fascinating is that their order on the chromosome is the same as the spatial ordering along embryos. This concept is called spatial colinearity, something we have no clear understanding of\cite{Gaunt2015}.
 
 \begin{figure}[H]
+    \center
     \includegraphics[width=0.5\linewidth]{ch.introduction/imgs/hox.png}
     \caption{caption}
     \label{fig:hox}
@@ -107,7 +137,7 @@ The observation that single mutations can cause such large changes in body plans
 
 \subsection{The hourglass model and the phylotypic stage}
 
-Where the molecular observations of the HOX and PAX genes are a relatively recent addition to the field of evo-devo, the oldest observations in the field are based on the morphology (shape) of embryos. The most famous and influential observations in the field of evo-devo have been done by Ernst Haeckel in the 1800s\cite{haeckel1866}. Haeckel, through a series of observations and drawings of the embryonic development of different vertebrates, noticed a stage early in development where all vertebrates appear morphologically similar. This stage is now known as the phylotypic stage (see figure \ref{fig:haeckel_wide}). The Origin of Species, \textit{the} book by Charles Darwin in which he proposes the evolution theory, was only published a decade before these observations, and the idea of a scala naturæ (the ordering of species into higher and lower species) was still popular at that time. Haeckel thought his observations could unify the scala naturæ and the evolution theory, and came with a refinement of the recapitulation theory. Haeckel proposed that embryos of higher species consecutively develop from embryos of lower species into embryos of higher species. For example, a human embryo, which would be the highest and most developed species, would first develop into a fish embryo, then a reptile embryo, and finally into a mammalian embryo. This would explain why, for instance, gills and tails develop in human embryos, to then later disappear. The recapitulation theory unifies the scala naturæ with evolution, as the higher species are more evolved than the lower ones. Haeckel was a strong proponent of eugenics and proposed an ordering in human races, where the Germanic race, coincidentally the race Haeckel belongs to, was listed all the way at the top\cite{Levit2020}. The recapitulation theory was already controversial at the time it was proposed and is refuted by the contemporary scientific community. Nevertheless, the notion of a morphologically conserved stage early in development is prevalent to this day.
+Where the molecular observations of the HOX and PAX genes are a relatively recent addition to the field of evo-devo, the oldest observations in the field are based on the morphology (shape) of embryos. Ernst Haeckel has done the most famous and influential observations in the field of evo-devo in the 1800s\cite{haeckel1866}. Through a series of observations and drawings of the embryonic development of different vertebrates, Haeckel noticed a stage early in development where all vertebrates appear morphologically similar. This stage is now known as the phylotypic stage (see figure \ref{fig:haeckel_wide}). The Origin of Species, \textit{the} book by Charles Darwin in which he proposes the evolution theory, was only published a decade before these observations, and the idea of a scala naturæ (the ordering of species into higher and lower species) was still prevalent at that time. Haeckel thought his observations could unify the scala naturæ and the evolution theory, and came with a refinement of the recapitulation theory. Haeckel proposed that embryos of higher species consecutively develop from embryos of lower species into embryos of higher species. For example, a human embryo, which would be the highest and most developed species, would first develop into a fish embryo, then a reptile embryo, and finally into a mammalian embryo. This would explain why, for instance, gills and tails develop in human embryos, to then later disappear. The recapitulation theory unifies the scala naturæ with evolution, as the higher species are more evolved than the lower ones. Haeckel was a strong proponent of eugenics and proposed an ordering in human races, where the Germanic race, coincidentally the race Haeckel belongs to, was listed all the way at the top\cite{Levit2020}. The recapitulation theory was already controversial at the time it was proposed and is refuted by the contemporary scientific community. Nevertheless, the notion of a morphologically conserved stage early in development is prevalent to this day.
 
 \hvFloat[doublePage,capWidth=n,
 capPos=bottom,bindCorr=0.0cm]{figure}
@@ -120,36 +150,18 @@ In the same time period, Karl Ernst von Baer proposed an alternative theory of e
 
 Even though the theories of Von Baer and Haeckel are dismissed by contemporary biologists, their observations of a morphologically conserved stage in development remain intriguing and have led to the formulation of the hourglass model of development. The hourglass model is based on the model proposed by Paul Medawar in 1954\cite{Medawar1954}. Medawar argues that somewhere mid-embryogenesis is the most morphologically conserved stage for vertebrates. This stage corresponds to Haeckel's phylotypic stage, but, different from Haeckel's recapitulation theory, different species are thought to be more diverse both before and after the mid-embryogenesis state. As during the phylotypic stage the basic body plan is formed, it is a popular hypothesis that HOX genes are responsible for this conserved stage. And recently, molecular evidence has been generated that gene expression between different species is most similar at the phylotypic stage (TODO CITE THOSE PAPERS). This has led to the idea that the phylotypic stage is not just morphologically conserved, but also conserved on the level of gene expression and regulation. In chapter \textbf{TODO} I discuss the current statistical methods that estimate this molecular conservation, and by careful re-analysis, I demonstrate that the used methodology is biased. This in turn means that the conclusions the original authors draw about the phylotypic stage and the molecular hourglass model are unfounded. 
 
-\section{Computational genomics}
-
-The field of computational genomics concerns itself with the analysis of the enormous quantities of data that molecular biology produces. In this thesis the analysis of three different sequencing assays 
-
-Assay for Transposase-Accessible Chromatin using sequencing (ATAC-seq) is a method to measure genome-wide accessibility. 
-
-Even though ATAC-seq and ChIP-seq measure genomic DNA, and RNA-seq measures the transcriptome. Their analysis is surprisingly similar. 
-
-\begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch.introduction/imgs/analysis.png}
-    \caption{TODO add DNAse}
-    \label{fig:analysis}
-\end{figure}
-
-\subsection{Single cell}
-
-Whereas originally 
-
 \section{Thesis overview}
 
-The expression and regulation of (embryonic) development is a widely studied topic. It is less common, but still common, to study gene regulation in the context of evolution. Wh
+This thesis focuses on the computational analysis of (evolutionary-) developmental processes. The current chapter (\textbf{chapter 1}) served as a general introduction to the scientific fields of computational genomics, gene regulation, and evolutionary development.  
 
-In \textbf{chapter 2} we review the current computational approaches to model and understand gene regulatory networks in development. Current gene regulatory network inference methods perform poorly, and thus a new approach is needed. We highlight three recent developments for gene regulatory network inference which we expect to improve the power of these methods; multi-omics networks, single-cell data, and artificial neural networks. Multi-omics data partially solve the curse of dimensionality by constraining the problem and providing more data. Bulk sequencing measures the compound signal of multiple cell types, single-cell sequencing separates the signal per cell type, so cell-type-specific networks can be made and the data contains a purer signal. Artificial neural networks can model more complex gene-gene interactions than the current approaches. By combining these three approaches we expect future gene regulatory network inference methods to predict better networks.
+In \textbf{chapter 2} I review the current computational approaches to model and understand gene regulatory networks in development. Current computational gene regulatory network inference methods perform poorly, and thus new approaches are needed. I highlight three recent developments for gene regulatory network inference which I expect to improve the power of these methods; multi-omics networks, single-cell data, and artificial neural networks. Multi-omics data partially solve the curse of dimensionality by constraining the problem and providing more data. Bulk sequencing measures the compound signal of multiple cell types. Single-cell sequencing, on the other hand, separates the signal per cell type, so cell-type-specific networks can be made and the data contains a purer signal. Artificial neural networks can model more complex gene-gene interactions than the current approaches. By combining these three approaches I expect future gene regulatory network inference methods to predict better networks.
 
-In \textbf{chapter 3} we discuss the implementation of seq2science, a next-generation pre-processing workflow. Seq2science supports some of the most common assays, such as RNA-seq, ChIP-seq, and ATAC-seq, integrates with public databases, and reports an extensive quality control report. Seq2science has been tested on a wide array of different species and genome assemblies, and we show examples of common analyses that seq2science supports out of the box. Seq2science has an extensive user base\cite{Bright_2021,Xu_2020,Wester2021,SantosBarriopedro2021,Heuts2023,Tholen2023,Harlaar2022,LunaVelez2023,Neikes2023,Vierboom2021,Smits2020,Smits2022,Heuts2022,Rother2023}, is downloaded over 40K times through Bioconda, and has more than 120 ``stars'' on GitHub.
+In \textbf{chapter 3} I discuss the implementation of seq2science, a next-generation pre-processing workflow. Seq2science supports some of the most common assays, such as RNA-seq, ChIP-seq, and ATAC-seq, integrates with public databases, and reports an extensive quality control report. Seq2science has been tested on a wide array of different species and genome assemblies, and I show examples of common analyses that seq2science supports out of the box. Seq2science has an extensive user base\cite{Bright_2021,Xu_2020,Wester2021,SantosBarriopedro2021,Heuts2023,Tholen2023,Harlaar2022,LunaVelez2023,Neikes2023,Vierboom2021,Smits2020,Smits2022,Heuts2022,Rother2023}, is downloaded over 40K times through Bioconda, and has more than 120 ``stars'' on GitHub.
 
-In \textbf{chapter 4} we discuss the implementation of Qnorm,  a Python quantile normalization package. Python did not have a quantile normalization package yet, and the implementations on fora about how to do quantile normalization did not resolve ties properly. Qnorm is fast-ish and scales to infinitely large tables as it can swap memory to disk.
+In \textbf{chapter 4} I discuss the implementation of Qnorm, a Python quantile normalization package. Quantile normalization is the process of fitting multiple distributions onto their average distribution. Python did not have a quantile normalization package yet, and the implementations on public fora about how to do quantile normalization did not resolve ties properly. Qnorm is fast-ish and scales to infinitely large tables as it can swap memory to disk.
 
-In \textbf{chapter 5} we discuss the molecular basis of the phylotypic stage and its related models. We explain how the current definition and analyses of the phylotypic stage are ambiguous, as they do not distinguish within-species effects from between-species effects. For this reason, we propose that any study of the phylotypic stage includes at least a within-species comparison, a within-phylum comparison, and a between-phyla comparison. By applying these comparisons we find important flaws in the interpretation of previous results. We highlight three examples where the within-species pattern is enough to explain the between-species pattern. Moreover, we find that the mid-developmental transition is a statistical artifact. All in all, we question the validity of current approaches to study the phylotypic stage, as they are gross oversimplifications of the biological complexity during development.
+In \textbf{chapter 5} I discuss the molecular basis of the phylotypic stage and its related models. I explain how the current definition and analyses of the phylotypic stage are ambiguous, as they do not distinguish within-species effects from between-species effects. For this reason, I propose that any study of the phylotypic stage includes at least a within-species comparison, a within-phylum comparison, and a between-phyla comparison. By applying these comparisons I find important flaws in the interpretation of previous results. I highlight three examples where the within-species pattern is enough to explain the between-species pattern. Moreover, I find that a supposed between-phyla effect, the mid-developmental transition, is a statistical artifact. Finally, I question the general validity of the current approaches to studying the phylotypic stage, as they are gross oversimplifications of the biological complexity during development.
 
 In \textbf{chapter 6} 
 
-In \textbf{chapter 7} 
+Finally, in \textbf{chapter 7} I summarize and discuss the results described in this thesis, and give future perspectives on the field.
