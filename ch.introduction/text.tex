@@ -6,44 +6,47 @@
 The human body is formed by a collection of 37,000,000,000,000 cells\cite{Bianconi2013}, with each cell containing approximately 2 meters of DNA. This means that our bodies house an astounding 74,000,000,000 kilometers of DNA, which is equivalent to nearly 250 round trips to the sun! Our DNA is spread over 23 distinct structures called chromosomes and organized into roughly 20,000 genes. What makes all this even more intriguing is that all cells within our body possess exactly the same DNA, yet they exhibit remarkable diversity and specialization. How does a single set of instructions (DNA) give rise to such diverse cell types? What is the role of evolution in this process, and consequently, what are the differences in instructions between species? To better appreciate these fascinating phenomena, it is crucial to understand the central dogma of molecular biology (fig. \ref{fig:central_dogma}).
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch.introduction/imgs/central_dogma.png}
+    \center
+    \includegraphics[width=0.7\linewidth]{ch.introduction/imgs/central_dogma.png}
     \caption{\textbf{The central dogma of molecular biology.} DNA transcribes to RNA, and RNA translates to protein. Solid arrows indicate the general flow of information in the system, and dotted arrows are special cases.}
     \label{fig:central_dogma}
 \end{figure}
 
 The central dogma of molecular biology describes the flow of genetic information within a biological system. Whereas in a computer information is stored in bits, which can be either zero (0) or one (1), genetic information is stored in nucleotides, which can be either adenine (A), cytosine (C), guanine (G), or thymine (T). DNA is composed of two large strands of these four nucleotides that together form a double helix. Both strands contain the same information, but where there is a nucleotide A on one strand, there is always a corresponding nucleotide T on its complementary strand, and similarly for C and G. RNA, on the other hand, is a similar molecule but is typically single-stranded. It is transcribed from DNA and shares a similar nucleotide composition but replaces thymine (T) with uracil (U). RNA serves as the bridge between DNA and proteins. Through the process of translation, the information encoded in RNA is decoded and used to assemble chains of amino acids, known as proteins. Proteins carry out various tasks in our bodies, such as enabling chemical reactions, transporting other molecules, providing structure, and acting as regulators of DNA transcription and RNA translation.
 
-Far from all the human DNA is transcribed to RNA, and not even all RNA translates to protein. As a general rule of thumb, we distinguish DNA sequences that get transcribed into RNA as genes. The human genome consists of approximately 20.000 protein-coding genes, and these genes equal only 1,5\% of the genome\cite{Piovesan2019}. Early molecular biologists mainly focused on protein-coding genes, thus the remaining 98.5\% of the DNA got known as ``junk DNA'', a controversial term in the field\cite{Graur2013}. We now know, however, that approximately 10\% of human DNA is functional\cite{Graur2013}, and around 80\% is involved in at least one biochemical process\cite{encode2012}. Almost all of the functional DNA that does not encode for protein is related to gene expression regulation.
+Far from all the human DNA is transcribed to RNA, and not even all RNA translates to protein. As a general rule of thumb, we distinguish DNA sequences that get transcribed into RNA as genes. The human genome consists of approximately 20.000 protein-coding genes, and these genes equal only 1,5\% of the genome\cite{Piovesan2019}. Early molecular biologists mainly focused on protein-coding genes, thus the remaining 98.5\% of the DNA got known as ``junk DNA'', a controversial term in the field\cite{Graur2013}. We now know, however, that approximately 10\% of human DNA is functional\cite{Graur2013}, and around 80\% is involved in at least one biochemical process\cite{encode2012}. Almost all of the functional DNA that does not encode protein is related to gene expression regulation.
 
 \section{Gene expression regulation}
 
-Even though a skin cell and a liver cell house identical DNA, they use completely different sets of genes. This is possible due to the tight regulation of gene expression, for which cells have a wide array of tools at their disposal. This thesis mainly focuses on transcription factors and their related chromatin context, which will be discussed in more detail.
+Even though all cells of your body house identical DNA, they use completely different sets of genes. This is possible due to the tight regulation of gene expression, for which cells have a wide array of tools at their disposal. This thesis mainly focuses on transcription factors in gene regulation and their related chromatin context.
 
 \subsection{Transcription Factors}
 
-A typical gene consists of its coding parts (exons), noncoding parts (introns), and the start signal (promoter). The promoter functions as a location where general transcription factors bind, which in turn recruit RNA polymerase II (RNAPII). RNAPII is the protein complex responsible for transcription, and is responsible for reading out the DNA gene and converting it to RNA.
+A typical gene consists of its coding parts (exons), noncoding parts (introns), and the start signal (promoter). The promoter functions as a location where general transcription factors bind, which in turn recruit RNA polymerase II (RNAPII). RNAPII is the protein complex responsible for transcription, and is responsible for reading out the DNA gene and converting it to RNA. Even though the presence of general transcription factors and a promoter is generally enough for transcription to occur\cite{Haberle2018}, transcription regulation, and by extension gene expression regulation, occurs through transcription factors and enhancers (figure \ref{fig:TF}. Enhancers are small regions on the DNA, typically a few hundred base pairs in length, where transcription factors can bind. Based on specific short (6-16 bp) DNA sequences, known as motifs, in these enhancers, different TFs can bind. The bound transcription factors then act like switches, determining whether transcription should be turned up in response to various signals and conditions.
 
-The presence of general transcription factors and a promoter is generally enough for transcription, although on a low level\cite{Haberle2018}. Transcription regulation, and by extension gene expression regulation, occurs through transcription factors and enhancers (figure \ref{fig:TF}. Enhancers are regions on the DNA where transcription factors can bind. These transcription factors act like switches, determining whether the gene should be turned up or down in response to various signals and conditions.
-
-Transcription factors bound to 
-
-\begin{figure}[H]
+\begin{figure}[h]
     \center
     \includegraphics[width=0.65\linewidth]{ch.introduction/imgs/transcription_factor.png}
-    \caption{Caption}
+    \caption{Caption (make TF right a GTF}
     \label{fig:TF}
 \end{figure}
+
+Gene expression is regulated through the combined action of many (cis-)regulatory elements, such as the promoter and enhancers, but also silencers and insulators\cite{Spitz2012}. Silencers have a similar function to enhancers, except that they downregulate transcription. Insulators regulate the spatial distances between enhancers/silencers and the promoter. Insulators work by binding specific proteins that help establish a physical barrier that prevents interactions between regulatory elements on either side of the insulator. 
+
+However, there are usually multiple transcription factors binding at enhancers, and their function should be considered at the combinatorial level. The positioning of multiple motifs in an enhancer is known as the motif grammar, and includes, for instance, the presence of certain motifs, the order of these motifs, their orientation, and spacing. Studying motif grammar is a hard problem, as there are many possible permutations of motifs in a single enhancer, the rules change based on the cell type, and it is costly to experimentally validate predictions.
 
 \subsection{Chromatin context}
 
 To be able to fit two meters of DNA into each cell, the DNA needs to be carefully packaged. Chromatin refers to the complex of DNA, proteins, and RNA that makes up the genetic material within a cell's nucleus. It is like the packaging material for DNA, providing structural support and helping to organize the genetic material. The primary components of chromatin are DNA and histone proteins.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \center
-    \includegraphics[width=0.65\linewidth]{ch.introduction/imgs/histones.png}
+    \includegraphics[width=0.55\linewidth]{ch.introduction/imgs/histones.png}
     \caption{Caption}
     \label{fig:histones}
 \end{figure}
+
+Blocking nucleosome repositioning
 
 Histones are proteins around which DNA is tightly wrapped. DNA wraps around these histones like thread on a spool, forming a structure called a nucleosome. Nucleosomes are the basic units of chromatin.
 
@@ -55,13 +58,15 @@ DNA Methylation: Another important aspect of gene regulation is DNA methylation,
 
 The way DNA is folded and packaged in the chromatin structure directly impacts how accessible different regions of DNA are to the cellular machinery responsible for transcription and gene expression. Regions of open chromatin are more accessible and likely to be actively transcribed, while tightly packed regions may be silenced.
 
-\begin{figure}[H]
+\begin{figure}
     \includegraphics[width=\linewidth]{ch.introduction/imgs/accessibility_horizontal.png}
-    \caption{Caption}
+    \caption{Schematic representation of how chromatin context regulates DNA accessibility. There can be no histones bound, which results in open chromatin. Transcription factors can easily scan the DNA for motifs and bind. Closed chromatin on the other hand is so tightly bound by histones that the DNA has become inaccessible for transcription factors. In between lies permissive chromatin, which, depending on the histone modifications is accessible for transcription factors.}
     \label{fig:accessibility}
 \end{figure}
 
 \subsection{Other gene regulatory modes}
+
+Gene expression can be regulated by many other modes. For instance the regulation of degradation of the RNA after transcription (REF). This can be useful in case a protein isn't needed anymore by a change in the environment. 
 
 There are many other ways gene expression can be regulated. Examples are mRNA degradation regulation. Post-transcriptional modifications such as phosphorylation and symoylation. Signal transduction: cool example Michael Levin with flat worms.
 
@@ -81,7 +86,8 @@ The first concept of gene regulatory networks was proposed by Roy Britten and Er
 Gene regulatory networks come in many forms and shapes, but are often modeled and visualized with direct gene-gene interactions (fig. \ref{fig:network}A). This means for instance that the protein product of gene $\alpha$ directly regulates the protein product of gene $\beta$, ignoring all steps in between. Even though this is a gross oversimplification of gene-gene interactions, these simple models can already exhibit complex behavior. One of the older and more well-known examples of complex behavior from a simple model is a Turing pattern, discovered by the famous computer scientist Alan Turing\cite{Turing1952}. This model consists of two genes, gene $\alpha$, and gene $\beta$, where gene $\alpha$ upregulates itself and gene $\beta$, but gene $\beta$ inhibits gene $\alpha$ (fig. \ref{fig:network}B). When modeling this simple two-gene network in a spatial setting it produces complex patterns (fig. \ref{fig:network}C), of which similar patterns have been observed in nature (fig. \ref{fig:network}D).
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch.introduction/imgs/network.png}
+    \center
+    \includegraphics[width=0.8\linewidth]{ch.introduction/imgs/network.png}
     \caption{\textbf{Basic gene regulatory networks.} (\textbf{A}) the standard schematic way of representing gene-gene interactions. Gene $\alpha$ upregulates gene $\beta$, and gene $\gamma$ downregulates gene $\delta$. (\textbf{B}) Gierer-Meinhardt gene regulatory network, where gene $\alpha$ upregulates itself and gene $\beta$, and gene $\beta$ downregulates gene $\alpha$. (\textbf{C}) Simulation of the Gierer-Meinhardt gene regulatory network in a spatial context. (\textbf{D}) A Mbuna pufferfish with Turing pattern. Turing pattern from: https://www.nature.com/articles/s43588-022-00306-0 and pufferfish photo taken by Tiia Monto: https://en.wikipedia.org/wiki/Mbu\_pufferfish\#/media/File:Tetraodon\_mbu\_2.jpg}
     \label{fig:network}
 \end{figure}
@@ -90,33 +96,40 @@ Mapping the relations between genes is a hard problem and unfeasible to do by ha
 
 \section{Genomics analysis}
 
-A genomics project can be broken down into three main stages: wet lab work, dry lab work, and sequencing. The wet lab phase entails hands-on experimentation with physical materials like chemicals and biological samples. In contrast, the dry lab phase involves computationally interpreting and analyzing the data generated by the wet lab. The sequencing step falls between the wet lab and the dry lab. In this thesis, three different types of sequencing assays have been used and analyzed (ATAC-seq, ChIP-seq, and RNA-seq), and we'll briefly discuss their wet lab, sequencing, and dry lab parts. 
+A genomics project can be broken down into three main stages: wet lab work, dry lab work, and sequencing. The wet lab phase involves hands-on experimentation with physical materials like chemicals and biological samples. In contrast, the dry lab phase is concerned with the computational interpretation and analysis of the data generated by the wet lab. The sequencing step falls in between the wet lab and the dry lab, and includes the measurement of the isolated DNA. In this thesis, three different types of sequencing assays have been used and analyzed (ATAC-seq, ChIP-seq, and RNA-seq), and therefore we'll briefly explain their wet lab, sequencing, and dry lab aspects. 
 
-\subsection{wet lab}
+\subsection{Wet lab}
 
-Assay for Transposase-Accessible Chromatin using sequencing (ATAC-seq) (CITE ATACSEQ) is a method to measure genome-wide accessibility. Accessible DNA is generally associated with active DNA, and vice versa. ATAC-seq works by adding a protein called tn5 transposase to a sample. This protein then proceeds to randomly cut up the genome. However, if a piece of DNA is inaccessible, for example, because a protein is bound or a histone modification is blocking access, the tn5 can not reach the DNA to cut it. Small DNA sequences thus represent accessible DNA as they could be cut. After treating DNA with tn5, one then isolates the small DNA fragments (+/- 1.000 base pairs long or less), which are then ready to be sequenced.
+Assay for Transposase-Accessible Chromatin using sequencing (ATAC-seq) (CITE ATACSEQ) is a method to measure genome-wide accessibility. Accessible DNA is generally associated with active DNA, and vice versa. ATAC-seq works by adding a protein called tn5 transposase to a sample. This protein then proceeds to randomly cut up the genome. However, if a piece of DNA is inaccessible, for example because a histone modification is blocking access, the tn5 can not reach the DNA to cut it. Small DNA sequences thus represent accessible DNA as they could be cut. After treating DNA with tn5, one then isolates the small DNA fragments (+/- 1.000 base pairs long or less), which are then ready to be sequenced.
 
-Chromatin ImmunoPrecipitation sequencing (ChIP) (CITE CHIPSEQ) is an assay to measure proteins in proximity to DNA. These proteins are generally transcription factors, but can also be histone modifications that make the DNA more or less permissive. It works by first fixating (gluing together) the chromatin (DNA and associated proteins) with formaldehyde. Afterward, you break the DNA into smaller pieces of for instance +/- 200 base pairs long. You then add proteins that bind to your protein of interest (antibodies) and filter out all the DNA sequences with bound antibodies. Filtering out the antibodies can be for instance done by magnets if magnetic antibodies were used or XYZ. As the final step, the DNA, proteins, and antibodies need to be separated, and the remaining DNA fragments can be sent for sequencing.
+Chromatin ImmunoPrecipitation sequencing (ChIP) (CITE CHIPSEQ) is an assay to measure proteins in proximity to DNA. These proteins can be proteins such as transcription factors or histone modifications that make the DNA more or less permissive. It works by first fixating (gluing together) the chromatin (DNA and associated proteins) with formaldehyde. Afterward, you break the DNA into small pieces of +/- 200 bp long. You then add proteins (antibodies) that bind to your protein of interest and filter out all the DNA sequences with bound antibodies. Filtering out the antibodies can be for instance done by magnets if magnetic antibodies were used or XYZ. As the final step, the DNA, proteins, and antibodies need to be separated, and the remaining DNA fragments can be sent for sequencing.
 
-RNA-seq is a method to estimate which gene transcripts are present in a sample and in what quantity. The amount of RNA transcripts of a gene is used as a proxy for both the level of gene regulation as well as for the number of protein product that is present in a sample. RNA-seq works by first filtering out all the RNA in a sample, and then converting the RNA into DNA by reverse transcription (see fig. \ref{fig:central_dogma}. The resulting DNA then represents the number of gene transcripts for a gene were present, and can then be sequenced.
+RNA-seq is a method to estimate which gene transcripts are present in a sample and in what quantity. The amount of RNA transcripts of a gene is used as a proxy for both the level of gene regulation as well as for the number of protein product that is present in a sample. RNA-seq works by first filtering out all the RNA in a sample, and then converting the RNA into DNA by reverse transcription (see fig. \ref{fig:central_dogma}. The resulting DNA then represents the number of gene transcripts for a gene, and can then be sequenced.
 
 \subsection{Sequencing}
 
-Sequencing is a lab technique used to determine the order of nucleotides of DNA. Many different techniques exist, but Illumina sequencing by synthesis is most common and ill explain. The first step in sequencing is the addition of adapters to the DNA. These adapters are bound to the beginning and end of the DNA strand. The DNA is then spread thinly over a surface, called the flow cell, where the adapters bind to the flow cell. By PCR the DNA is multiplied (PCR), and because of the adapters the multiplied DNA strand stays close to the original location. Then actual sequencing occurs, by adding fluorescently labeled nucleotides one at a time. explain how they work from start to beginning. As nucleotides are incorporated, the fluorescent signal is emitted and detected. The color of the signal corresponds to the type of nucleotide that was incorporated. This step provides the sequencing data for each position along the DNA fragment. During sequencing a camera films the process, where the order of the colors expressed at each spot (TODO use spot before) represents the DNA sequence.
+Sequencing refers to laboratory techniques employed to determine the precise order of nucleotides within a DNA sequence. Here we will focus on the sequencing by synthesis method, although various other techniques, such as Sanger, Oxford Nanopore, and PacBio, also exist. Sequencing happens on a surface known as a flow cell, and to have the DNA sequences bind to this surface, the process starts with the addition of adapters to the DNA strands. The adapters are added to both ends of the DNA strand. Subsequently, the DNA is thinly spread across a the flow cell, and because of the adapters the DNA strand is anchored to it. The DNA strands then get amplified by PCR, and as the adapters are also amplified, the resulting sequences bind in close proximity to the original. This leads to clusters of identical DNA sequences forming concentrated spots on the flow cell. The flow cell is then subjected to heat, causing the DNA strands to become single-stranded. One at a time, fluorescently labeled nucleotides are added to the flow cell. Each nucleotide has a different color, and when the nucleotide gets incorporated in the sequence it emits its specific color. Throughout this process, a camera captures the emitted colors from each spot. The final output of sequencing is this video file, where the order of colors of emitted from each spot corresponds to the sequence of DNA.
 
-\subsection{dry lab}
+\subsection{Dry lab}
 
-After sequencing, one ends up with video file tha (FASTQ) with for each DNA sequence there is a line in the file with the DNA sequence. One first needs to remove the sequencing adapters of these sequences, to then align these reads to the genome. Alignment to the genome is a compute-heavy task, as FASTQ files generally contain several millions of reads. After alignment one ends up with a map that aligns each read to a position in the genome. Generally the next step is to assign features to the genome based on where reads are positioned. For RNA-seq this is easy as we know where the genes are, and we can make a table with the number of reads found for each gene. For ATAC-seq and ChIP-seq experiments we generally do not know the regions of interest yet. So we 
+The resulting video file is then converted to a file (FASTQ) where with as many lines as there were spots on the flow cell, where each line is the DNA sequence. First, one needs to remove the sequencing adapters of these sequences, to then align these reads to the genome. Alignment to the genome is a compute-heavy task, as FASTQ files generally contain several millions of reads, and genomes are large. After alignment one ends up with a map file that aligns each read to a position in the genome. Generally, the next step is to assign features to the genome based on where reads are positioned. For RNA-seq this is usually easy, as we already know where the genes are, and we can count the number of reads aligned inside each gene. For ATAC-seq and ChIP-seq experiments we generally do not know the regions of interest yet. So we first need to select the regions of the DNA of interest. This is usually done by so-called peak-calling algorithms (cite MACS2, EPIC, hmmratac). These algorithms look for regions (peaks) where the number of reads aligned passes a statistical threshold. Similarly to RNA-seq, it is common to then make a table with the number of reads aligning at each peak. The results of different samples in ATAC, ChIP, and RNA-seq experiments are usually aggregated in a table, where each row represents a gene/peak and each column a sample.
 
-\begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch.introduction/imgs/analysis.png}
+After obtaining a table with values for each sample, depending on the research question what further steps are needed. If one for instance is interested in liver development and has generated a liver time-series it is common to infer the liver gene regulatory network. If one, on the other hand, is interested in the difference between two relatively similar conditions, for instance healthy vs sick livers, it is common to do a differential expression analysis on the table. Gene regulatory network inference based on RNA-seq usually happens by correlating gene expression over time. Gene-gene correlations that pass a certain threshold are assumed to be gene regulatory. Gene regulatory network inference on ATAC-seq or histone ChIP-seq is usually done by doing a TF motif analysis on the peaks. Ideally, one combines both RNA-seq and ATAC/CHIP-seq for more accurate gene networks. Differential expression analysis provides a list of all the differentially expressed genes/peaks. These features are then indicators of the possible differences between samples, and can be targets for further treatment.
+
+\begin{figure}
+    \center
+    \includegraphics[width=0.5\linewidth]{ch.introduction/imgs/analysis.png}
     \caption{TODO}
     \label{fig:analysis}
 \end{figure}
 
 \subsection{Single cell}
 
-Whereas originally 
+A major downside of traditional sequencing is that it requires a lot of input DNA to be sensitive. For this reason one sequences larger samples/biopsies of tissues. The problem with this is that the measured signal is a compound signal of all the cells present in a sample. If we were to take a biopsy of the liver, it would consist of XYZ!, blood cells, and neural cells, this is why this type of sequencing is also known as bulk sequencing. Relatively recently new techniques have been developed to do single cell RNA- and single cell ATAC-sequencing. This means that we can measure the gene expression and DNA accessibility for each cell in a biopsy separately! This means that it is now possible to measure the gene expression of the XYZ of the liver separately. This type of data gives unprecedented precision in analysis.
+
+A major downside of single cell sequencing is that the data analysis is significicantly harder. Whereas originally one would compare two livers split over a couple replicates with each other, now there are thousands of liver cells separated over multiple cell types to compare. Moreover, the hardware that was used for the original bulk analyses is suddenly not powerful enough anymore to deal with the enormous increase of data. Furthermore, statistical methods developed for bulk analyses do not apply anymore, as for instance a single cell has only two of each chromosomes, so continuous methods do not apply. Whereas bulk sequencing is already sensitive to who/what did the wet lab, single cell sequencing is even more sensitive.
+
+Even though all these downsides exist, single cell sequencing very promising!
 
 \section{Evolutionary development (evo-devo)}
 
@@ -124,10 +137,10 @@ A single fertilized egg cell multiplies and develops into a complex collection o
 
 The embryonic development of a fruit fly starts as a worm-like larva consisting of multiple repeated segments. The gene expression of Hox genes determines each segment's identity and guides its growth. For example, the \textit{lab} hox-gene is expressed at the frontal part of the larva, indicating surrounding cells this area will develop into the mouth of the fly\cite{Hughes2002}. Similarly, the \textit{Antp} hox gene indicates leg formation and is expressed in the mid-section of the larva. Interestingly, Hox genes are found in nearly all animals, where they play an important role in the spatial organization of the organism. What makes Hox genes particularly fascinating is that their order on the chromosome is the same as the spatial ordering along embryos. This concept is called spatial colinearity, something we have no clear understanding of\cite{Gaunt2015}.
 
-\begin{figure}[H]
+\begin{figure}
     \center
-    \includegraphics[width=0.5\linewidth]{ch.introduction/imgs/hox.png}
-    \caption{caption}
+    \includegraphics[width=\linewidth]{ch.introduction/imgs/hox.png}
+    \caption{The genomic ordering of HOX genes in fruit fly and human, and their colinearity in expression. All the hox genes for the fruit fly lay on chromosome 3. The human genome has had two genome duplications since the last common ancestor of fruit flies, so the hox genes are spread over chromosomes 5, 11, 15, and 2. Even though some HOX genes got lost on the chromosomes, their ordering has remained the same.}
     \label{fig:hox}
 \end{figure}
 
@@ -144,7 +157,7 @@ capPos=bottom,bindCorr=0.0cm]{figure}
 {\includegraphics[width=2.2\textwidth]
 {ch.introduction/imgs/haeckel_wide.png}}
 [accessibility schematic overview]
-{George Romanes's 1892 copy of Ernst Haeckel's controversial embryo drawings}{fig:haeckel_wide}
+{Adaptation of George Romanes's 1892 copy of Ernst Haeckel's embryo drawings. The upper row shows early embryos in the phylotypic stage, while the bottom row shows a later stage. Note how all the embryos appear similar in the phylotypic stage. Haeckel has been accused of fraud, amplifying the similarities at the phylotypic stage, with both supporters\cite{Richards2008} and opponents of his drawings\cite{Pennisi1997}}{fig:haeckel_wide}
 
 In the same time period, Karl Ernst von Baer proposed an alternative theory of embryonic development. Von Baer was strongly opposed to Haeckel's recapitulation theory. He noted, for instance, that a yolk sac is present during bird embryonic development, but not for frog embryonic development. This is inconsistent with the recapitulation theory as frogs are considered a higher species than birds. Von Baer's opposing theory consisted of four main rules, or laws\cite{baer1828}. His first law states that \textit{the more general characters of a large group appear earlier in the embryo than the more special characters}. This means that as an embryo develops, it first develops its oldest phylum-specific features, to then respectively develop its class, order, family, and species-specific features. Simply put, embryos of related species become increasingly diverse as development proceeds. Von Baer did not believe in the idea of a single common ancestor for all life on earth, as he believed the differences between some species, e.g. humans and sponges, to be too large to be bridged by evolution.
 

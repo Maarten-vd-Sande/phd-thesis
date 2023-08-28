@@ -15,9 +15,13 @@ All models are wrong, but some are useful.
 
 Almost all gene regulatory approaches are context specific. But in the end a single set of instructions (DNA) for all contexts.
 
+\section{Do I regret seq2science?}
+
 \section{The future of biology}
 
 \subsection{Computational}
+
+
 
 \subsection{lack of unified data encode like stuff}
 
@@ -29,13 +33,21 @@ For seq2science paper we tried paper X, Y, Z. DIFFICULT to get similar results.
 %  - drosophila sample missing and two other samples swapped
 %  - inverse hourglass time orientation has negative values
 
+NCBI sra is growing exponentially \cite{srawebsite}, but it is poorlymaintained.? It is an absolute pain to download from NCBI sra, hence sra-explorer, pysradb, fetchfastq, nf-core/fetchngs, and seq2science download-fastq workflow. Even more painful is that samples are submitted in non-standardized format. Need for MetaSRA and ALE. Works poorly, and is not necessary. Just properly add data. ENCOED is really nice
+
+Single cell datasets often useless as only two out of three reads submitted. Single cell data is increasingly large.
+
 \subsection{Open Science}
+
+
 
 \subsection{Too much descriptive, not enough understanding}
 
 \subsection{Move away from mRNA}
 
-mRNA and protein relation
+mRNA and protein relation.
+The correlation between protein expression and mRNA expression seems high (0.87) measured across cell types. However, genes with high protein expression generally have high mRNA expression. So it is easy to get high prediction. If you want to predict a single gene you get correlation of 0.41. Simpson's paradox! 
+https://www.nature.com/articles/nature23293
 
 https://www.biorxiv.org/content/10.1101/2023.05.23.541948v1
 
