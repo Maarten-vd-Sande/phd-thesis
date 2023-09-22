@@ -24,7 +24,7 @@ In 2016, Levin \textit{et al.} introduced the transcriptomic inverse hourglass m
 
 Yoav Mayshar \textit{et al.} studied the phylotypic stage and the hourglass model from a single-cell point of view\cite{Mayshar2023}. Their research involved a comparative analysis of cell type proportions during the development of rabbit and mouse embryos. However, in Chapter X, I show that both the rabbit time series and the mouse time series exhibit discontinuous patterns. These discontinuities significantly influence the temporal correlations between the two species. This discontinuous pattern in cell-type proportions could be interpreted as indicative of a mid-developmental transition, resembling an inverse hourglass-like pattern. What raises questions is Mayshar \textit{et al.}'s interpretation of this data. They perceive the pattern as confirming the traditional hourglass model. This leads to the question of why such a fundamental problem of their analysis was not detected during the peer review process, especially considering that the study was published in Cell, one of the most prestigious scientific journals. When I asked Y. Mayshar on Twitter if their results perhaps represent an inverse hourglass, he commented with \say{this basically shows convergence of frequencies of cell states at \textasciitilde e7.5-e8, preceding what would be normally considered as the phylotypic stage, though this is pretty vaguely defined...}. Pretty vague indeed Yoav.
 
-There appears to be a concerning lack of genuine effort to understand or engage with one another's work within the field. Many studies, it seems, are riddled with glaring methodological issues that often go unaddressed, as long as they align with our prior beliefs. In chapters X AND Y I show and discuss a series of newly discovered problems with comparative approaches. I fear that highlighting these problems won't actually matter, as people will continue to believe their pet theories, and there will always be some methodology that in a way affirms it. For instance, during the early stages of my PhD, I had a meeting with Ozren Bogdanovic, one of the authors of the papers that does a transcriptomic comparisons between \textit{D. rerio} and \textit{X. tropicalis}. He is a staunch believer of the hourglass model, and even has a tattoo of it! I shared some of my preliminary findings with him, which pointed to the inverse hourglass being an artifact of normalization. I also expressed my concerns regarding the methodology employed in their analysis. Surprisingly, he brushed off my concerns, stating that he was not directly involved in that particular analysis and thus saw no need to discuss its potential issues. To this day, I remain perplexed as to why the identity of the analyst should bear any significance for the validity or relevance of the analysis. Similarly, a colleague in my department once commented that despite my work showing that virtually all quantitative methodologies used in our field are flawed, the undeniable fact remains that the phylotypic stage does, in fact, exist.
+There appears to be a concerning lack of genuine effort to understand or engage with one another's work within the field. Many studies, it seems, are riddled with glaring methodological issues that often go unaddressed, as long as they align with our prior beliefs. In chapters X AND Y I show and discuss a series of newly discovered problems with comparative approaches. I fear that highlighting these problems won't actually matter, as people will continue to believe their pet theories, and there will always be some methodology that in a way affirms it. For instance, during the early stages of my PhD, I had a meeting with one of the co-authors of the papers that applies transcriptomic comparisons between \textit{D. rerio} and \textit{X. tropicalis}\cite{marletaz2018}. He is a staunch believer of the hourglass model, and even has a tattoo of it! I shared some of my preliminary findings with him, which pointed to the inverse hourglass being an artifact of normalization. I also expressed my concerns regarding the methodology employed in their analysis. Surprisingly, he brushed off my concerns, stating that he was not directly involved in that particular analysis and thus saw no need to discuss its potential issues. Similarly, a colleague in my department once commented that despite my work showing that virtually all quantitative methodologies used in our field are flawed, the undeniable fact remains that the phylotypic stage does, in fact, exist.
 
 Based on my own re-analyses, it appears most methodologies actually support the null model. The null model for evolutionary embryonic development would be that there is no specific stage of higher or lower temporal conservation. 
 \begin{itemize}
@@ -33,6 +33,7 @@ Based on my own re-analyses, it appears most methodologies actually support the 
     \item Both the transcriptomic between-phyla inverse hourglass pattern and the morphological within-phylum inverse hourglass pattern are fully reproduced by simulated data with no specific temporal conservation.
     \item Only the \textit{Drosophila} enhancer conservation re-analysis results in a stage of maximum similarity, albeit at a different point than the original authors find. Moreover, I simply do not agree with the methodological approach of this analysis.
 \end{itemize}
+\noindent
 Altogether, I have found little evidence to reject the null hypothesis of constant temporal conservation.
 
 Furthermore, there is no consensus about what is actually expected to be conserved. The original observation that vertebrate embryos, perhaps, look more like each other at certain points in development than at other times, says nothing about the molecular basis for this. It has been quantitatively studied on the basis of embryonic lethality\cite{Uchida2018}, morphology\cite{OlafRP2003,Cordero2020}, DNA sequence conservation\cite{Piasecka2013,Quint2012,Liu2021} and activation order\cite{Uesaka2019}, cell type proportion\cite{Mayshar2023}, and whole-transcriptome similarity\cite{Piasecka2013,Irie2011,marletaz2018,Liu2020,Leong2021,PerezPosada2022,Kalinka2010}, with differing results. Measuring the transcriptome has become the most popular way to asses quantitative similarity. Is the widespread adoption of transcriptomic methods driven by a genuine expectation of transcriptomic similarity based on (supposed) morphological resemblance, or because transcriptomic methods are the most confirming of our prior beliefs that the phylotypic stage is the most conserved? Even assuming the phylotypic stage to exist, why would we expect to be able to measure such a complex phenomenon with such crude methods as observational studies and whole embryo sequencing?
@@ -45,33 +46,45 @@ Almost all gene regulatory approaches are context specific. But in the end a sin
 
 % \section{Do I regret seq2science?}
 
-\section{Future prospects}
+\section{Bioinformatics is a mess}
 
-\subsection{Computational}
+Bla bla bioinformatics analyses are complex. Very difficult. 
+Field is always changing, new technologies and insights.
+Even more complicated is that most bioinformaticians are not trained to do bioinformatics analyses.
+(wet lab) PhD students with affinity for computational work over the time 
+Combination of poorly skilled bioinformaticians and constant new insights makes the field an absolute mess.
+Any bleeding edge field suffers from these problems, but I think (unfounded) bioinformatics has a particularly bad problem.
 
-\subsection{lack of unified data encode like stuff}
+Excel gene names?
 
-THIS NEEDS SOME THOUGHT. What do I want to say? If anything
+Sam 1 indexed, bam 0 indexed. (usually doesn't really matter though) \cite{Li2009}. Bed is 0 indexed, GFF and VCF are 1 indexed \cite{Danecek2011}.
+Who thought it was a good idea to split fastq files? From a single fastq, to paired-end. Annoying, but fine. But now single-cell sequencing adds another file, the barcode and umi. 
+Single cell datasets often useless as only two out of three reads submitted.
+Single cell also suchs because barcodes are often not submitted to SRA.
 
-NCBI SRA is growing exponentially\cite{srawebsite,Katz2021}, and is expected to reach 33 petabytes of data by the end of 2023. This is an invaluable resource, that allows for checking each other's results and data re-use and integration for new analyses. My PhD research would not have been able without it, as I have exclusively used public data, of which a large part is from the SRA. But the cost of storage is getting larger, and the SRA is having trouble financing this growth \cite{srawebsite2}. Currently, the SRA makes use of Amazon Web Services (AWS), and at their 2 cents per gigabyte for storage, the estimated 33 petabytes of data in 2023 would cost approximately €660,000 per year. Add the costs of EBI ENA and DDBJ (each mirroring each other). Downloading data from AWS costs approximately 5 cents per gigabyte. For the scepia chapter \textbf{TODO} I downloaded 12,000 human h3k27ac samples, totalling almost 20 TB of fastqs, which roughly costed the SRA 1,000 euros. Unfortunately, it turned out that roughly one third of the data was not actually h3k27ac, and this processing run was discarded. 
+NCBI SRA is growing exponentially\cite{srawebsite,Katz2021}, and is expected to reach 33 petabytes of data by the end of 2023. This is an invaluable resource, that allows for checking each other's results and data re-use and integration for new analyses. My PhD research would not have been able without it, as I have exclusively used public data, of which a large part is from the SRA. But the cost of storage is getting larger, and the SRA is having trouble financing this growth \cite{srawebsite2}. Currently, the SRA makes use of Amazon Web Services (AWS), and at their 2 cents per gigabyte for storage, the estimated 33 petabytes of data in 2023 would cost approximately €660,000 per year. Add the costs of EBI ENA and DDBJ (each mirroring each other). Downloading data from AWS costs approximately 5 cents per gigabyte. For the scepia chapter \textbf{TODO} I downloaded 12,000 human h3k27ac samples, totalling almost 20 TB of fastqs, which roughly costed the SRA 1,000 euros. Unfortunately, it turned out that roughly one third of the data was not actually h3k27ac, and this processing run was discarded. Need for MetaSRA and ALE. Works poorly, and is not necessary. Just properly add data
 
+SRA tools suck! Used to not be stable, would crash a lot. Needs idiosyncratic configuration (vdb-config) before you can run it, shitty for workflos. SRA Dumping is slow, and for long time was not parallelized, even though it is theoretically easy to parallelize. Alternative scripts are made that split SRA file over multiple files, and do parallel dumping. Works fine! sra-explorer, pysradb, fetchfastq, nf-core/fetchngs, and seq2science download-fastq workflow.
+
+First comes first serve? No incentive to maintain a tool. MACS(2) by far the most used peak caller, even though it is stoopid. Props though for their continuous maintenance. E.g. assumption of Poisson distribution. MACS is designed for ChIP, and as such the way it handles mates is stupid. Either in paired-end mode it makes a pileup between start to end of sequencing reads. But with ATAC-seq we are interested 
+IDR and MACS2 only support 2 replicates. I fixed for macs2 (https://github.com/macs3-project/MACS/pull/304). Just lazy implementations?
 
 For seq2science paper we tried paper X, Y, Z. DIFFICULT to get similar results.     
 
-% No similarity between replicates:
+% No correspondence between (ATAC) replicates:
 % https://www.nature.com/articles/s41467-019-12687-4
 % 
 %  - drosophila sample missing and two other samples swapped
 %  - inverse hourglass time orientation has negative values
 %  SE marked as paired: https://trace.ncbi.nlm.nih.gov/Traces/index.html?view=run_browser&acc=SRR8577639&display=metadata
 
-NCBI sra is growing exponentially \cite{srawebsite}, but it is poorlymaintained.? It is an absolute pain to download from NCBI sra, hence sra-explorer, pysradb, fetchfastq, nf-core/fetchngs, and seq2science download-fastq workflow. Even more painful is that samples are submitted in non-standardized format. Need for MetaSRA and ALE. Works poorly, and is not necessary. Just properly add data. ENCOED is really nice
+NCBI sra is growing exponentially \cite{srawebsite}, but it is poorlymaintained.? It is an absolute pain to download from NCBI sra, hence sra-explorer, pysradb, fetchfastq, nf-core/fetchngs, and seq2science download-fastq workflow. Even more painful is that samples are submitted in non-standardized format. . ENCOED is really nice
 
-Single cell datasets often useless as only two out of three reads submitted. Single cell data is increasingly large.
+Seurat vs scanpy major differences in their log fold change calculation. How is this allowed?
 
-Searat vs scanpy major differences in their log fold change calculation. How is this allowed?
+Double dipping is a nice point to make
 
-Major problem to solve is not biology, its biologists filling out forms
+Algorithms are usually implemented extremely poorly. Take a look at my \textit{bad} quantile normalization implementation in Python. It really should not use that much memory. The solution to these problems is to make the software better, however the usual solution in the field is to make the hardware better. Increasing the hardware capacities makes it look like what you are doing is smort. Our department has a server with 503 GB of RAM. This was frequently not enough to run ANANSE, a tool developed by our department. The solution wasn't to make ananse more memory efficient, but (a bit oversimplified) we just bought a new server with double the RAM. Apparantly an ex colleague even specifically requested a computer with 4000 GB of RAM so he could run his analyses. 
 
 \subsection{Open Science}
 
