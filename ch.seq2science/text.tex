@@ -1,3 +1,149 @@
-\chapter{Seq2science: From Raw Data to Insights in Bioinformatics}\thumbforchapter
-\chapterauthor{Maarten van der Sande*, Siebren Fr{\"o}lich*, Tilman Sch{\"a}fers, Jos Smits, Rebecca R. Snabel, Simon J. van Heeringen}
+\chapter{Seq2science: an end-to-end workflow for functional genomics analysis}\thumbforchapter
+\chapterauthor{Maarten van der Sande*, Siebren Fr{\"o}lich*, Tilman Sch{\"a}fers, Jos Smits, Rebecca R. Snabel, Sybren Rinzema, Simon J. van Heeringen}
 \newpage
+
+\section{Abstract}
+
+Sequencing databases contain enormous amounts of functional genomics data, making them an extensive resource for genome-scale analysis. Reanalyzing publicly available data, and integrating it with new, project-specific data sets, can be invaluable. With current technologies, genomic experiments have become feasible for virtually any species of interest. However, using and integrating this data comes with its challenges, such as standardized and reproducible analysis. Seq2science is a multi-purpose workflow that covers preprocessing, quality control, visualization, and analysis of functional genomics sequencing data. It facilitates the downloading of sequencing data from all major databases, including NCBI SRA, EBI ENA, DDBJ, GSA, and ENCODE. Furthermore, it automates the retrieval of any genome assembly available from Ensembl, NCBI, and UCSC. It has been tested on a variety of species, and includes diverse workflows such as ATAC-, RNA-, and ChIP-seq. It consists of both generic as well as advanced steps, such as differential gene expression or peak accessibility analysis and differential motif analysis. Seq2science is built on the Snakemake workflow language and thus can be run on a range of computing infrastructures. It is available at \href{https://github.com/vanheeringen-lab/seq2science}{\color{blue}{https://github.com/vanheeringen-lab/seq2science}}.
+
+\section{Introduction}
+
+The Sequence Read Archive (SRA) at NCBI currently holds over 36 petabytes of sequencing data, and this volume is growing rapidly \cite{srawebsite}. Due to the flexibility of using sequencing as a readout, a large variety of different assays are available, such as RNA-sequencing (RNA-seq) \cite{rnaseq} for gene expression quantification, Chromatin Immunoprecipitation (ChIP) sequencing \cite{chipseq} to profile DNA-bound proteins and assay for transposase-accessible chromatin with sequencing (ATAC-seq) \cite{atacseq} to determine DNA accessibility. This wealth of public data enables researchers to verify results, re-analyze data with novel techniques, and to combine and integrate datasets from different studies. However, processing these large amounts of data is a challenging and time-consuming task, even for researchers that are already familiar with high-throughput sequencing data processing details. To address this issue, various workflow systems have been developed, roughly categorized into three approaches: community-oriented workflow collections, multi-purpose workflows, and single-purpose workflows.
+
+Community-oriented workflow collections enable multiple users to contribute workflows, as long as they conform to the established style and language of the community. Examples of community-based workflow collections include Galaxy \cite{galaxy}, Snakemake-Workflows \cite{snakemakeworkflows}, and nf-core \cite{nfcore}. These collections offer the advantage of supporting a wide range of workflows and assays, with an active community providing support. Multi-purpose workflows facilitate multiple highly consistent workflows and typically provide a single entry point for users. Examples include Snakepipes \cite{snakepipes}, ENCODE pipelines \cite{encode2023}, and CellRanger \cite{Zheng2017}. These workflows are designed to maintain consistency across different analyses, making it easier for users to learn and analyze the supported workflows. Single-purpose workflows are tailored to address specific problems, such as ARMOR for RNA-seq \cite{Orjuela2019} and PEPATAC to analyze ATAC-seq \cite{Smith2021}. The advantage of these workflows lies in their high level of specialization, focusing on particular tasks or analyses.
+
+Although there is a choice of publicly available, published workflows, we found that these did not address all of our requirements. First, apart from some exceptions such as Galaxy, most workflows have not been specifically designed with public data in mind. This requires users to download and prepare the data in advance. While this is doable for small studies, it quickly becomes prohibitive for more large-scale analyses combining data from different studies. Additionally, many workflows have been primarily developed for, and tested on, human and/or mouse data. This limits their applicability to non-model species. It can be cumbersome to add new genomes and supporting gene and transcript annotation. Finally, workflows that do not actively encourage data exploration leave users susceptible to missing biases and failing to uncover concealed insights. Workflows should make sure to include a variety of quality control results and diagnostic plots, as it is essential to check the quality of the data. This includes, for instance, checking mapped data visually using a genome browser. 
+
+To address these limitations, we have developed seq2science, a multi-purpose workflow that supports virtually all public sequencing databases, multiple sequencing assays, and any species of interest. Seq2science is capable of automatically downloading genome assemblies and raw sequencing data from a range of sources. It supports multiple read trimmers, aligners, peak callers, and quantification methods, and generates an extensive quality report and a fully configured UCSC trackhub. It currently supports bulk ChIP-, ATAC- and RNA-seq, downloading of FASTQ files, and a generic genomic alignment workflow. Installation is easy through the Conda package manager, and extensive \href{https://vanheeringen-lab.github.io/seq2science/}{\color{blue}{documentation is available online}}. Seq2science is designed to cater to both intermediate and advanced bioinformaticians. It serves as an accessible starting point for those with a basic grasp of bioinformatics concepts, thanks to its sensible default settings. Additionally, it offers a high degree of customization, making it appealing to advanced users who seek more tailored control over their analyses.
+
+\section{Methods}
+
+\subsection{Implementation}
+
+Seq2science is built using Snakemake \cite{snakemake}, a portable and open-source workflow system, which divides a workflow into independent modules called rules. Each rule includes a piece of code, its expected output, and optional input requirements. This design allows rules to be linked together, with the output of one rule serving as the input for another. Snakemake automatically determines the order in which rules need to be executed and distributes these tasks across available resources. To ensure reproducibility, most rules are assigned a specific virtual environment using the Conda ecosystem \cite{anaconda} that is automatically installed at the start of a run.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{ch.seq2science/imgs/figure_overview.png}
+	\caption{\label{fig:overview} \textbf{Schematic overview of seq2science}. Seq2science can conceptually be split into six parts: downloading of samples and genome assembly, trimming of reads, transcriptome/genome mapping, quality control, initial analysis, and the final output. For each part the corresponding supported tools are listed. }
+\end{figure}
+
+Seq2science requires two input files: a samples file and a configuration file. The samples file is a table containing a column of FASTQ files (or public identifiers for automatic downloading from any of the supported databases), a column with the assembly the FASTQ file must be mapped to, and optional additional metadata columns. Optional columns are the descriptive name of the samples, information about the relations between samples such as whether samples are technical and/or biological replicates, and other such details. The configuration file is a YAML file with configurable parameters. These include whether to execute certain steps, the options to use when executing rules, and the directories where the output will be stored. Detailed explanations for the samples file and configuration file are available in the online documentation, and examples of these files are in the Supplemental Information and available at Zenodo (\url{https://doi.org/10.5281/zenodo.8345208}).
+
+\subsubsection{General overview}
+
+Regardless of the chosen workflow, when seq2science is executed, it checks for the local availability of the genome assembly and sequencing reads (in FASTQ format). If the genome assembly or the reads are not found locally, seq2science will download them. Once the raw data is obtained, the FASTQ files are prepared for alignment. This involves  building a genome index and trimming the reads. The aligned reads are then duplicate-marked, filtered, and sorted according to the configuration settings. Nearly all workflows produce a set of indexed BAM (or optionally CRAM) files, an extensive quality control report, and a UCSC trackhub at this stage. The ATAC- and ChIP-seq workflows call peaks, and the output is stored and aggregated into a peak counts table. The RNA-seq workflow uses the specified quantifier to obtain raw gene counts and TPM tables. Optional differential gene expression, peak accessibility, and motif activity analyses are fully supported. Finally, a workflow explanation is generated with the parameters, version, and citation per tool which is also embedded in the QC report. For a schematic overview of the different steps and supported tools of seq2science see \autoref{fig:overview}. 
+
+\subsubsection{Download-fastq}
+
+The download-fastq workflow can retrieve FASTQ files from various databases: the European Nucleotide Archive (ENA) \cite{ENA}, Gene Expression Omnibus (GEO) \cite{GEO}, the Sequence Read Archive (SRA) \cite{SRA}, the DNA Data Bank of Japan (DDBJ) \cite{DDBJ}, the Genome Sequence Archive (GSA) \cite{GSA} and the ENCODE project \cite{Luo2019}, using their specific identifiers; ERX, ERR, GSM, SRX, SRR, DRX, DRR, CRX, ENCSR, or ENCFF numbers. The SRA, ENA, and DDBJ databases contain raw sequencing data that must be converted to FASTQ format, and they generally mirror each other in their content. EBI ENA, GSA, and ENCODE, however, store FASTQ files directly, so if a sample on the SRA or DDBJ is found to be mirrored on ENA by pysradb \cite{pysradb}, seq2science will directly download FASTQ files from there, optionally using Aspera Connect (ascp), which is a high-speed transfer protocol developed by IBM. If the sample is not directly available in FASTQ format, seq2science uses the sra-toolkit \cite{SRA} to download the raw data and parallel-fastq-dump, a parallelized version of fastq-dump, to convert the data to FASTQ files.
+
+\subsubsection{Alignment}
+
+The alignment workflow in seq2science processes FASTQ files that are either already present on the device or are automatically obtained using the download-fastq workflow. If necessary, the workflow will also download a genome assembly FASTA file and corresponding gene annotation file using genomepy \cite{genomepy}. The FASTQ files are trimmed for quality and adapters using either TrimGalore \cite{trimgalore} or fastp \cite{fastp}, as specified by the user. The trimmed FASTQ files are then aligned to the genome using the selected mapper, such as bowtie2 \cite{bowtie2}, bwa-mem \cite{bwamem}, bwa-mem2 \cite{bwamem2}, HISAT2 \cite{hisat2}, minimap2 \cite{minimap2}, or STAR \cite{star}. The resulting BAM file is filtered based on criteria such as MAPQ value, duplicate status, or alignment in the ENCODE blacklist \cite{blacklist}. The filtered BAM file is then converted into a bigWig file and prepared for visualization in a UCSC trackhub \cite{trackhub} or, when the genome assembly is not hosted by UCSC, as an assembly hub. The filtered BAM file can optionally be stored as a CRAM file to save disk space. Quality checks are performed throughout the process using FastQC \cite{fastqc}, samtools \cite{samtools}, Picard \cite{picard}, and deepTools\cite{deeptools}, and the results are summarized in a MultiQC report\cite{multiqc}.
+
+\subsubsection{ATAC- \& ChIP-seq}
+
+The ATAC- and ChIP-seq workflows are identical in implementation, except that they are initialized with different default settings. They internally use the same rules as the alignment and download-fastq workflows, which means that they either start by downloading FASTQ files,  or analyze files that are already present. For the ATAC-seq workflow the aligned reads are by default Tn5 shifted \cite{Yan2020} and only reads with a maximum template length of 150 base pairs are kept. Peak calling is done on the filtered BAM files with either MACS2 \cite{macs2} or genrich \cite{genrich}, with optionally specified control samples. Biological replicates can be combined either with the internal Fisher's method of either tool, or with IDR \cite{idr}. Peaks between conditions are combined when they fall within a certain range of each other with GimmeMotifs \cite{Bruse_2018} and a count table is made for all samples based on the number of reads in peaks. Optional differential peak analysis with DESeq2 \cite{deseq2}, or differential motif analysis with GimmeMotifs \cite{Bruse_2018} can be performed if selected. When doing a differential motif analysis, seq2science automatically converts the transcription factor gene names in the motif database into the (orthologous) gene names of the assembly used when a genome annotation is available. Additional QC is collected by deepTools \cite{deeptools}, ChIPseeker \cite{chipseeker}, and Subread \cite{subread}. See file S14 for a directed acyclic graph of all the steps involved with the ATAC- and ChIP-seq workflows.
+
+\subsubsection{RNA-seq}
+
+The RNA-seq workflow begins with the acquisition and processing of FASTQ files as described in the alignment and download-fastq workflows. Gene expression quantification can be based on either genomic alignment or transcript quantification, depending on the settings. For genomic alignment, reads are aligned to the genome with a splice-aware aligner (STAR \cite{star} or HISAT2 \cite{hisat2}). The output BAM files are filtered and have their duplicate reads marked. Gene expression quantification is then performed by assigning reads to genes, using HTSeq \cite{htseq} or featureCounts \cite{subread}. Ambiguous transcripts are minimized by providing the gene counting tools with the strandedness of each sample, which is inferred using RSeQC \cite{rseqc}. Additional gene-based TPM expression levels are generated using genomepy \cite{genomepy}, based on longest transcript lengths. For the gene quantification approach, transcript abundances are quantified using Salmon \cite{salmon} in mapping-based mode. To improve mapping accuracy, decoy sequences are generated as suggested by the Salmon documentation. The transcript abundances are aggregated to gene level using pytxi \cite{pytxi} or tximeta \cite{tximeta} and additionally converted to gene counts using genomepy \cite{genomepy}. 
+
+Independent of the configured gene expression quantification approach, the workflow supports differential gene expression analysis with DESeq2 \cite{deseq2} with batch effect correction to integrate (multiple) datasets, and can prepare an exon count table for downstream use with DEXSeq \cite{dexseq}. Strand-specific bigWig files are generated for visualization in a UCSC trackhub. The trackhub configuration file is updated with strand information for ease of use. Additional quality control metrics specific to RNA-seq are obtained from DESeq2 \cite{deseq2} and dupRadar \cite{dupradar}. See Supplemental File S15 for a directed acyclic graph of all the steps involved with the RNA-seq workflow.
+
+\section{Use Cases} % Optional - only if no new datasets are included
+
+To briefly illustrate some of the capabilities of seq2science, we show how to use it to download publicly available FASTQ files, and finally show three example processing runs using public data.
+
+\subsection{Downloading FASTQ files}
+
+Downloading FASTQ files with seq2science has been made extremely easy. After installation of seq2science (see Supplemental File S1), all that needs to be provided is a tab-separated file with database identifiers. Seq2science currently supports identifiers for ENA, GEO, SRA, DDBJ, GSA, and ENCODE. For this example, we will download one FASTQ file from each database. To get started we need to initialize seq2science in the current directory:
+
+\begin{minted}{text}
+    seq2science init download-fastq
+\end{minted}
+
+After this initialization, we get a config and a samples file. The config file is practically empty as there is not much to configure for the download-fastq workflow. For this workflow, the relevant option is the directory where we want the samples to be downloaded.
+
+\begin{table}[t]
+    \hrule height 0.05cm  \vspace{0.01cm}
+	\caption{\label{download.tsv}Example samples file for the download-fastq workflow. }
+	\centering
+    {\begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+        sample \\  \hline
+        ERX000401 \\ \hline
+        ERR022487 \\ \hline
+        GSM2811115 \\ \hline
+        SRX257149 \\ \hline
+        SRR800037 \\ \hline
+        DRX029591 \\ \hline
+        DRR032791 \\ \hline
+        CRX269079 \\ \hline
+        ENCSR535GFO \\ \hline
+        ENCFF172MDS \\ \hline
+    \end{tabular}}
+\end{table}
+
+We then edit the samples file and add the experiment (or run identifier) of each sample (\autoref{download.tsv}). Here we show a mixture of paired-end and single-end samples to highlight seq2science's ability to work with both data types. To download these samples all we now have to do is run seq2science:
+
+\begin{minted}{text}
+    seq2science run download-fastq --cores 8
+\end{minted}
+
+Seq2science will now start downloading our samples. Samples hosted on GSA, ENCODE, and ENA are downloaded directly as FASTQ file, whilst the samples not on ENA, ENCODE, or GSA first get downloaded as an intermediate SRA file which then gets converted into a FASTQ file. Even though we have specified the DRX and DRR samples by their DDBJ identifier, seq2science finds their ENA mirror if it exists and directly downloads those to save computational resources. At the end of this run, we end up with the corresponding FASTQ files for all ten samples.
+
+\subsection{A map of cis-regulatory elements in zebrafish}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\textwidth]{ch.seq2science/imgs/zebrafish_fig1.png}
+	\caption{\label{fig:zebrafish_fig1} \textbf{Snapshot of the UCSC trackhub and quality figures of seq2science}. \textbf{(A)} Fully configured UCSC trackhub generated by seq2science which highlights some of the supported assays. \textbf{(B)}  The fraction of ATAC-seq peaks predicted in each tissue and their genomic distribution, visualized by ChIPseeker. \textbf{(C)} Pairwise Spearman correlation coefficients of all the samples. }
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{ch.seq2science/imgs/zebrafish_fig2.png}
+	\caption{\label{fig:zebrafish_fig2} \textbf{Result of the differential motif analysis by seq2science between ATAC-seq peaks of different tissues of zebrafish} \cite{Yang2020}. Per tissue, the top two most differentially enriched motifs have been selected, with automatically inferred orthologs. The transcription factor names were manually curated for clarity. The full table with the motif analysis results is included in the quality report (Supplemental File S7).}
+\end{figure}
+
+In this example, we reproduced part of the analysis of the study "A map of cis-regulatory elements and 3D genome structures in zebrafish" \cite{Yang2020}. Yang et al. studied zebrafish chromosome conservation with a wide array of different functional genomics techniques. Here, we focused on the analysis of cis-regulatory elements and gene expression in different embryonic tissues. Using the default tools incorporated into seq2science, we downloaded the raw data for the different assays from the SRA, aligned these data to the zebrafish genome (\autoref{fig:zebrafish_fig1}A) and performed a differential transcription factor motif enrichment analysis on the ATAC-seq data. 
+
+After running seq2science, we obtained a set of aligned BAM files, narrowPeak files, a count table, a trackhub, and a quality control report (see Supplemental Files S2-7 for the configuration, samples, and QC report). \autoref{fig:zebrafish_fig1}A shows the alignment of reads visualized using the UCSC trackhub that was created by seq2science. The figure shows histone modification ChIP-seq data (H3K4me3, H3K27ac, H3K9me2 and H3K9me3), ATAC-seq, and RNA-seq for three different tissues (brain, muscle and liver) on a region of chromosome 4. \autoref{fig:zebrafish_fig1}B-C show a selection of diagnostic plots from the quality report. \autoref{fig:zebrafish_fig1}B demonstrates the ratio of ATAC-seq peaks annotated to different genomic regions, created by ChIPseeker. \autoref{fig:zebrafish_fig1}C shows the correlation of reads in ATAC-seq peaks between samples. This figure illustrates the value of extensive quality control, as it shows two samples where the replicates do not cluster together (colon and intestine). This would warrant further investigation, as it could indicate a potential sample swap. In our experience, this occurs frequently with samples downloaded from public databases, which may be due to a sample swap in the original analysis, or during submission to the repository. 
+
+As a demonstration of a more high-level analysis, \autoref{fig:zebrafish_fig2} shows the result of the differential motif analysis. Here, seq2science used GimmeMotifs to automatically convert the transcription factors in the motif database into the orthologous zebrafish genes. This automatic assignment means that motif analysis can also be used for non-model species that do not have a readily available motif annotation. \autoref{fig:zebrafish_fig2} shows the top motifs per tissue, based on the z-score. The complete table is part of the seq2science output report (see Supplemental File S7). In general, this unsupervised motif analysis recapitulates many of the findings of Yang et al., such as RFX and bHLH (Neurod, Atoh1) motifs enrichment in the brain and Hnf4a enrichment in the liver, colon, and intestine. Additionally, the GimmeMotifs analysis assigns Tp63 as a transcription factor enriched in the skin, as well as Tfap2, which are well-known regulators of epidermal development \cite{Soares2017,Li2019}.   
+
+\subsection{The regulatory landscape of whole-body regeneration in the three-banded panther worm \textit{Hofstenia miasma}}
+
+The article "Acoel genome reveals the regulatory landscape of whole-body regeneration" by Gehrke et al. analyzed the gene expression and chromatin accessibility of the Acoel worm \textit{Hofstenia miamia} \cite{Gehrke2019} during regeneration. The paper contains ATAC-seq and RNA-seq time-series data of the response to amputation and during whole-body regeneration. These data, and the \textit{Hofstenia miasma} genome are available from NCBI and consequently, seq2science can be applied to re-analyze this data with ease. The configuration files to reproduce the seq2science analysis and the complete output and quality control report are provided as Supplemental Information (Supplemental Files S8-13).
+
+The seq2science ATAC-seq workflow generated a consensus peak set based on the union of peaks from all time points, together with a count table with the read quantification per time point. See Supplemental File S10 for the ATAC-seq QC report. We clustered the count table to visualize the temporal accessibility patterns using log-transformed and z-score normalized read counts (\autoref{fig:aah}A). The figure nicely recapitulates the original work, with most ATAC-seq peaks showing strong signal at either 0 hours or 48 hour post-amputation (hpa).
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{ch.seq2science/imgs/figure_acoel.png}
+	\caption{\label{fig:aah} \textbf{Summary of selected results from the re-analysis of the RNA-seq and ATAC-seq regeneration time series from Gehrke et al}. \textbf{(A)} Heatmap of \textit{Hofstenia miamia} chromatin accessibility during tail regeneration post amputation. ATAC-seq read counts provided by seq2science were log-transformed, and columns were normalized using the z-score. \textbf{(B)} Differential gene expression during tail regeneration. The X axis shows the log2 fold change of 6hpa vs 0hpa; the Y axis shows the -log10 transformed p-value. Significantly changed genes (padj $\leq$ 0.05; log2 fold change $\geq$ 1) are marked in red. Top results were labeled with human ortholog gene families. \textbf{(C)} Motif activity prediction during tail regeneration. The top four motifs, as identified by GimmeMotifs, are shown with the activity z-score predicted by gimme maelstrom. Both Gehrke et al. and our seq2science analysis identified the EGR and NFI motifs as the top differentially active motifs in the knockdown experiment.}
+\end{figure}
+
+To demonstrate the RNA-seq workflow, we performed a differential expression analysis of 6 hpa versus 0 hpa using DESeq2 (see  Supplemental File S13 for the complete output). The results are visualized as a volcano plot in \autoref{fig:aah}B. As reported, the \textit{Hofstenia miamia} EGR ortholog is the most significant differentially expressed gene, followed by the RUNX homolog \textit{runt}, which is involved in wound healing and regeneration. The role of \textit{egr} is further confirmed by the differential motif accessibility analysis, performed on the ATAC-seq peaks in the seq2science ATAC-seq workflow (\autoref{fig:aah}C). As stated earlier, GimmeMotifs automatically assigns the transcription factors in the database to the orthologous genes in our assembly. As expected, the top enriched motif is EGR, which shows a high z-score during the post-amputation time-series, from 3 to 24 hpa. After the knockdown of EGR using RNAi, this is the most depleted motif with a strong negative z-score. 
+
+In conclusion, this use case reproduced the main findings from the the original paper, using the default tools incorporated in the RNA-seq and ATAC-seq workflows. Additionally, it demonstrates that seq2science is also easily applicable to non-model species.
+
+\subsection{Map of human DNase I hypersensitive sites}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{ch.seq2science/imgs/dnase.png}
+	\caption{\label{fig:dnase} \textbf{DNA accessibility at 1.4 million consensus DHSs assayed across 698 samples encapsulated in a visually compressed DHS-by-biosample matrix}. Recurring accessibility patterns indicate extensive sharing across cell contexts. Chromatin accessibility is defined as more than 1 count per million reads. }
+\end{figure}
+
+To highlight the ability of seq2science to scale with large data sets we performed a re-analysis of "Index and biological spectrum of human DNase I hypersensitive sites" \cite{Meuleman2020}. This paper analyzed 733 human DNAse I samples across different tissues. Of the 733 samples they reported, we were able to find 698 in the SRA database. To accommodate the DNAse I assay, which is not supported by default, we used the high degree of customizability of seq2science and adapted the default ATAC-seq workflow by turning the tn5\_shift flag off. The final output consists of over 1.7TB of sorted BAM files, with 1,404,721 peaks in the consensus peak set between these samples. \autoref{fig:dnase} shows the clustered output of the final count table, where the distinction between accessible and not accessible is made based on whether there is more than 1 count per million reads or not.
+
+\section{Conclusion}
+
+Seq2science facilitates reproducible preprocessing of high-throughput sequencing data of different assays through a unified setup. The tool is integrated with all major public sequence and assembly databases, and outputs extensive quality control and processed results to speed-up analysis. Seq2science requires minimal user input to get started, but offers a high degree of customizability. Each workflow and its configurable options are fully explained in the online documentation. The output from seq2science is reproducible and directly ready for analysis.
+
+\section{Acknowledgements}
+
+We are grateful to the open source bioinformatics community for their support in the development of seq2science. Special thanks to the bioconda and conda-forge teams for their help with packaging. More specifically we want to thank Saket Choudhary, Johannes K{\"o}ster, Tao Liu, Devon Ryan, and Phil Ewels for their assistance with Pysradb, Snakemake, MACS2, Bioconda, and MultiQC respectively. 

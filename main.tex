@@ -1,10 +1,7 @@
 % \documentclass[13pt]{book}
 % \documentclass[13pt]{extbook}
 \documentclass{book}
-\usepackage[fontsize=13pt]{fontsize}
-\usepackage{dirtytalk}
 
-\usepackage{graphicx}  % Required for inserting images
 \usepackage[
     natbib=true,
     style=numeric-comp,
@@ -13,6 +10,12 @@
     ]{biblatex}  % Imports biblatex package
 \addbibresource{bibliography.bib} % Import the bibliography file
 \let\cite=\supercite
+
+\usepackage[fontsize=13pt]{fontsize}
+\usepackage{dirtytalk}
+
+\usepackage{graphicx}  % Required for inserting images
+% \usepackage{inputenc}
 
 \usepackage{csvsimple}
 \usepackage{booktabs}
@@ -81,6 +84,7 @@
     tabsize=2
 }
 
+\usepackage[newfloat]{minted}
 \usepackage{mdframed}
 
 \lstdefinelanguage{bash}{
@@ -126,14 +130,14 @@
 
 \begin{document}
 % \include{ch.prefix/text}
-% \include{ch.introduction/text}
-% \include{ch.compapproach/text}
-% \include{ch.seq2science/text}
+\include{ch.introduction/text}
+\include{ch.compapproach/text}
+\include{ch.seq2science/text}
 % \include{ch.qnorm/text}
-% \include{ch.hourglass/text}
-% \include{ch.inverthourglass/text}
+\include{ch.hourglass/text}
+\include{ch.inverthourglass/text}
 \include{ch.scepia/text}
-% \include{ch.discussion/text}
+\include{ch.discussion/text}
 \include{ch.appendix/text}
 
 \end{document}
