@@ -60,13 +60,14 @@ Single-cell has the advantage of multiple measurements so significance tests.
 For consideration: top tissues x motif acivity is combined via tissue type x single cells via simple matrix multiplication. Doesn't fit in current layout, but putting them next to each other and indicating matrix multiplication / dot product. Hmm, on the other hand, there seems to be no notation (other than a dot). As we're not using mathematical notation here, that will also be unclear.
 
 ]
-\textit{06-11, RRS: ** I adjusted the figure according to most of the feedback above, does it work well with the different sizes of the matrices? Is this enough to illustrate the motif scanning? Or did you mean something totally different? Indeed the matrix-duplication is not yet in, didn't know exactly with current lay-out -> something to discuss. }
+\textit{06-11, RRS: ** I adjusted the figure according to most of the feedback above, does it work well with the different sizes of the matrices? Is this enough to illustrate the motif scanning? Or did you mean something totally different? Indeed the matrix-duplication is not yet in, didn't know exactly with current lay-out -> something to discuss. 
+Can continue on 8-11 again.}
 
 \textbf{SCEPIA on HHCA scRNA-seq data: }
 How did the annotation work, overal hits with motifs???, some examples of single-cell motif activity plotted onto UMAP
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\linewidth]{SCEPIA_allCells_Fig1_v8_Calibri.png}
+    \includegraphics[width=0.75\linewidth]{SCEPIA_allCells_Fig1_v9.png}
     \caption{\textbf{Figure XX: SCEPIA run on the Human Heart Cell Atlas} (a) UMAP representation, based on UMAP coordinates provided by the authors (\cite{Kanemaru2023}), with cluster annotation labels as predicted by SCEPIA. (b) Volcano plot of SCEPIA hits, labels of the top 15 of both correlating as anti-correlating hits are indicated, based on p-adj < 0.05 values. Dot size and color labels are based on the motif score standard deviations.  (c) Expression levels (top) of 3 well-known markers, TBX5 (cardiomyocytes), SOX17 (endothelial cells), RUNX1 (blood cells), and their predicted motif [[scores/activity]] by SCEPIA (bottom), printed on the UMAP as shown in (a). Sequence logos of the binding motifs are indicated, with the GimmeMotifs database identifiers (left to right): GM.5.0.T-box.0005, GM.5.0.Sox.0021, GM.5.0.Runt.0003. }
     \label{fig:scepia_hhca1}
 \end{figure}
@@ -78,13 +79,6 @@ TBX5 CM marker, SOX17 endothelial marker, RUNX1 lymphoid marker
 % [blabla]
 % {SCEPIA run on the human heart cell atlast}{fig:scepia_hhca}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.75\linewidth]{SCEPIAhitsHHCA_HeatmapExprSCEPIAMaelstrom_v2.png}
-    \caption{\textbf{Figure XX: Gene expression, SCEPIA and Maelstrom analysis on the human Heart Cell Atlas v2.} Significant transcription factor and binding motif hits (p-adj < 0.05) from the SCEPIA analysis on the human Heart Cell Atlas v2 were selected, and visualized as: Cluster averaged gene expression levels per transcription factor (left), cluster averaged motif activities for the predicted binding motifs inferred by SCEPIA from a H3K27Ac data reference (middle) and the motif activities as predicted by GimmeMotifs Maelstrom on the averaged scATAC-signal per cluster (right).}
-    \label{fig:scepia_hhca2}
-\end{figure}
-
 Comparing SCEPIA with Maelstrom motif activities
 For the interpretation of the motifs, it's also good to consider the difference between H3K27ac and accessibility. These assays measure different things. Nuclear receptor motif may not be necessarily associated with differential accessibility, if these factors bind in pre-existing accessible regions to regulate enhancer activity.
 \textit{-> 1 large cluster of adipocyte expressed factors (RORA-[...]-AR) that have no expression in the immune cell types (Myeloid, Lymphoid, Mast cell), show an irregular pattern of accessibility in the ATAC data for the immune cells. (OR the protein is still there and its not measured in the RNA levels) Combining the motif accessibility with the expression levels of their binding targets, shows a specificity of these factors for the adipocytes (and some in CM) which was not picked up in the maelstrom analysis.\href{https://www.cell.com/molecular-cell/fulltext/S1097-2765(00)80209-9?_returnURL=https\%3A\%2F\%2Flinkinghub.elsevier.com\%2Fretrieve\%2Fpii\%2FS1097276500802099\%3Fshowall\%3Dtrue}{PPAR gamma is required for placental, cardiac, and adipose tissue development }}
@@ -93,12 +87,12 @@ For the interpretation of the motifs, it's also good to consider the difference 
 BACH2 is known as a repressor, shows high expression in neural cell, associated with negative motif activity
 - it seems mural and mesothelial cells show relatively low motif activities (either positive or negative). Could suggest that here not enough matching H3K27ac cell types are available (they are probably not represented as pure cell types, and in tissue samples they're probably not abundant enough). Additionally, they are also not marked in the UMAP. Are they presen in very low numbers? In any case, enough explanations for why SCEPIA fails. Same cell types also perform the worst in the benchmark below).
 
-\textbf{NEEDED FIGURE???}
+\textbf{SCEPIA benchmark}
 SCEPIA on 100K subsets of HHCA scRNA-seq versus naive correlations between Maelstrom motif activity and binding gene expression levels
-SCEPIA with and without geosketch filtering: \textbf{check for interesting biology} -> Otherwise \textit{maybe} supplemental.
+SCEPIA with and without geosketch filtering: \textbf{check for interesting biology} 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\linewidth]{ch.scepia/imgs/CorrelationsGeosketch_perCT.png}
+    \includegraphics[width=0.75\linewidth]{Fig_OverlappingHitsBetweenSCEPIAGEOANDMAELSTROM_v3.png}
     \caption{SCEPIA sc benchmark - Geosketch}
     \label{fig:sc_benchmark}
 \end{figure}
@@ -161,7 +155,7 @@ The weight $w_k$ is calculated identically to ANANSE (ref):
 
 \subsection{Regulatory motif analysis and motif and transcription factor activity}
 
-In the regulatory potential benchmark (Fig XX) and in SCEPIA we use the \textbf{\textit{motif}} \textbf{\textit{activity}} as a measure of motif or transcription factor importance. The motif activity (ref MARA; ISMARA\cite{Balwierz2014}) is calculated using the Bayesian ridge regression implemented in gimmemotifs\cite{Bruse_2018}, with the motif log-odds scores as features and the H3K27ac signal as predictor variable. In short, for each each region cis-regulatory region in the input we compute the motif log-odds score for each motif in the gimmemotifs database (gimme.vertebrate.XX). This motif databases contains a non-redundant collection of vertebrate transcription factor motifs\cite{Bruse_2018}. We assume that the H3K27ac signal in each enhancer, expressed as log2(# of reads + 1), is the sum of all motif log-odds scores multiplied by their respective motif weights. We then estimated these motif weights using lasso regression, where the regularization parameter ($\lambda$) was determined through 5-fold cross-validation. These motif weights, the feature coefficients from the fitted regression model, are used as a measure of motif importance, the motif activity. This measure can than be used as \textit{\textbf{transcription factor activity,}} based on the TFs that are predicted to bind to the motif.
+In the regulatory potential benchmark (Fig XX) and in SCEPIA we use the \textbf{\textit{motif}} \textbf{\textit{activity}} as a measure of motif or transcription factor importance. The motif activity (ref MARA; ISMARA\cite{Balwierz2014}) is calculated using the Bayesian ridge regression implemented in gimmemotifs\cite{Bruse_2018}, with the motif log-odds scores as features and the H3K27ac signal as predictor variable. In short, for each each region cis-regulatory region in the input we compute the motif log-odds score for each motif in the gimmemotifs database (gimme.vertebrate.XX). This motif databases contains a non-redundant collection of vertebrate transcription factor motifs\cite{Bruse_2018}. We assume that the H3K27ac signal in each enhancer, expressed as log2(\# of reads + 1), is the sum of all motif log-odds scores multiplied by their respective motif weights. We then estimated these motif weights using lasso regression, where the regularization parameter ($\lambda$) was determined through 5-fold cross-validation. These motif weights, the feature coefficients from the fitted regression model, are used as a measure of motif importance, the motif activity. This measure can than be used as \textit{\textbf{transcription factor activity,}} based on the TFs that are predicted to bind to the motif.
 
 \subsection{Benchmark of regulatory potential-based cell type and motif assignemt.}
 
@@ -290,9 +284,9 @@ Single-cell epigenome-based inference of activity can be divided into five main 
 \textbf{Human Heart Cell Atlas single-cell comparison }
 - We have used the full global log-normalised counts-containing h5ad object of the human Heart Cell Atlas v2 (HCA) project as provided by the authors (\cite{Kanemaru2023}), and preprocessed the data with Scanpy (v1.9.2). 
 - Clustering and UMAP-embeddings were used as provided by the authors.
-- The dataset was subsetted to contain only highly variable genes (selected using the default settings within Scanpy; "min_mean = 0.0125, max_mean = 3, min_disp = 0.5") and the normalized counts were scaled. 
+- The dataset was subsetted to contain only highly variable genes (selected using the default settings within Scanpy; "min\_mean = 0.0125, max\_mean = 3, min\_disp = 0.5") and the normalized counts were scaled. 
 - Both the neighborhood connectivities of the single cells, as well as PCA were rerun, as necessary input for SCEPIA. 
-- SCEPIA's infer_motifs was run on the preprocessed data with the following settings: using the top 2000 highly variable genes, the top 10,000 most variable enhancers and a maximum of 50 cell types from the reference, ridge regression was used for motif activity analysis and no subsetting on the number of cells was performed (\textit{XX this I removed from the installation v0.5.1 -> not sure if this will be incoorporated in SCEPIA? XX}). 
+- SCEPIA's infer\_motifs was run on the preprocessed data with the following settings: using the top 2000 highly variable genes, the top 10,000 most variable enhancers and a maximum of 50 cell types from the reference, ridge regression was used for motif activity analysis and no subsetting on the number of cells was performed (\textit{XX this I removed from the installation v0.5.1 -> not sure if this will be incoorporated in SCEPIA? XX}). 
 - The ENCODE H3K27Ac human reference dataset and gimme.vertebrate.v5.0.pfm motif file from the GimmeMotifs were used as input. 
 - The resulting data was visualized with seaborn v0.12.2, matplotlib v3.8.0 and gimme logo from GimmeMotifs (v0.18.0)
 
@@ -338,7 +332,14 @@ Single-cell epigenome-based inference of activity can be divided into five main 
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{SCEPIA_Annotation_allCells_SuppFig1_v3.png}
-    \caption{Original annotation of cell types (a) SCEPIA annotation of clusters (! Shit! It misses every other line in annotation of predicted TissueType!) (b) Highest scoring motifs inferred with SCEPIA run on 700K cells (placeholder) }
+    \includegraphics[width=\linewidth]{SCEPIA_Annotation_allCells_SuppFig1_v4.png}
+    \caption{Original annotation of cell types (a) SCEPIA annotation of clusters (b) Highest scoring motifs inferred with SCEPIA run on 700K cells (placeholder) }
+    \label{fig:scepia_hhca1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{SCEPIAGEOSKETCH_AllCells20000_Suppfig.png}
+    \caption{SCEPIA run on geosketch of hHCA (a) SCEPIA annotation of clusters (b) Highest scoring motifs inferred with SCEPIA run on 700K cells (placeholder) }
     \label{fig:scepia_hhca1}
 \end{figure}
