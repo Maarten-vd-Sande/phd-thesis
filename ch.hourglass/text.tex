@@ -125,7 +125,7 @@ To test whether a relationship between the number of TP-specific enhancers and J
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{ch.hourglass/images/fly_shuffle.png}
-    \caption{\textbf{Permutation tests show that the high similarity at the phylotypic stage is an artifact of the number of enhancers}. \textbf{(A)} Distribution of Jaccard scores after randomly distributing enhancers to time points, but with an identical number of enhancers per time point as originally found (1.000 repeats). If the number of enhancers per time point does not influence the result an equal distribution is expected. The enrichment of TP3, however, indicates that this methodology is sensitive to the number of enhancers per time point ((\textit{dmel}, \textit{dvir}) TP1: (6.768, 12.150) TP2: (6.093, 8.334) TP3: (12.052, 13.404) TP4: (5.597, 5.941) TP5: (6.352, 8.390)). \textbf{(B)} Subsampling to 2.000 enhancers per time point (1.000 repeats). This removes the dependency of the Jaccard index on the number of enhancers. TP3 is clearly not enriched after subsampling.}
+    \caption{\textbf{Permutation tests show that the high similarity at the phylotypic stage is an artifact of the number of enhancers at each time point}. \textbf{(A)} Distribution of Jaccard scores after randomly distributing enhancers to time points, but with an identical number of enhancers per time point as originally found (1.000 repeats). If the number of enhancers per time point does not influence the result an equal distribution is expected. The enrichment of TP3, however, indicates that this methodology is sensitive to the number of enhancers per time point ((\textit{dmel}, \textit{dvir}) TP1: (6.768, 12.150) TP2: (6.093, 8.334) TP3: (12.052, 13.404) TP4: (5.597, 5.941) TP5: (6.352, 8.390)). \textbf{(B)} Subsampling to 2.000 enhancers per time point (1.000 repeats). This removes the dependency of the Jaccard index on the number of enhancers. TP3 is clearly not enriched after subsampling.}
     \label{fig:shuffle}
 \end{figure}
 
@@ -183,9 +183,9 @@ We had trouble closely reproducing the original results of Liu \textit{et al.}, 
 
 Preprocessing of the samples for the within-species comparisons was done automatically by seq2science v0.9.8\cite{seq2science} using the atac-seq workflow. Public samples were downloaded from the Sequence Read Archive with the help of the NCBI e-utilities and pysradb\cite{Choudhary2019}. Genome assemblies \textit{dm6} and \textit{droVir3} were downloaded with genomepy 0.13.0\cite{genomepy}. Paired-end reads were trimmed with fastp v0.20.1\cite{Chen2018} with default options. Reads were aligned with bwa-mem2 v2.2.1\cite{bwamem2} with options '-M'. Afterwards, duplicate reads were marked with Picard MarkDuplicates v2.23.8\cite{picard}. Before peak calling, paired-end info from reads was removed with seq2science so that both mates in a pair get used. The peak-calling effective genome size was estimated by khmer v2.0\cite{Crusoe2015} by calculating the number of unique k-mers with k being the average read length per sample. Peaks were called with macs2 v2.2.7\cite{Zhang2008} with options '--shift -100 --extsize 200 --nomodel --buffer-size 10000' in BAM mode. A consensus set of all summits was made with gimmemotifs 0.17.2\cite{Bruse_2018}. We then removed all summits that fall within a TSS with pyranges v0.0.120\cite{Stovner2019} to only keep enhancers.
 
-For the between-species comparison, we've used pslmap to map all \textit{droVir3} enhancers to the \textit{dm6} assembly and only kept one-to-one orthologous regions.  This is not necessary for the within-species comparisons. Time-point specific enhancers are defined as enhancers of which the summits are more than 200 base pairs removed from the enhancers of other time-points. Overlap over time is calculated as the Jaccard index.
+For the between-species comparison, we've used pslmap to map all \textit{droVir3} enhancers to the \textit{dm6} assembly and only kept one-to-one orthologous regions.  This is not necessary for the within-species comparisons. Time-point-specific enhancers are defined as enhancers of which the summits are more than 200 base pairs removed from the enhancers of other time points. Overlap over time is calculated as the Jaccard index.
 
-Permutation tests were performed on a table where the rows are the enhancers and the columns time points, and where each value is whether or not for that enhancer-time point combination the enhancer is called as a peak. We then randomly shuffled each column separately, so that the total number of enhancers stays the same, but the biological structure is removed from the data. On these tables, we then calculated the Jaccard index, and we repeated the process a 1.000 times to get a distribution. Similarly, for the subsetted data, we took a random subset of 2.000 rows (enhancers) and calculated the Jaccard index on this. We similarly repeated this a 1.000 times to get a distribution.
+Permutation tests were performed on a table where the rows are the enhancers and the columns time points, and where each value is whether or not for that enhancer-time point combination the enhancer is called as a peak. We then randomly shuffled each column separately, so that the total number of enhancers stays the same, but the biological structure is removed from the data. On these tables, we then calculated the Jaccard index, and we repeated the process 1,000 times to get a distribution. Similarly, for the subsetted data, we took a random subset of 2,000 rows (enhancers) and calculated the Jaccard index on this. We similarly repeated this 1,000 times to get a distribution.
 
 \subsection{Cell proportion re-analysis}
 
@@ -296,14 +296,14 @@ We can now visualize the Jaccard index for different $\alpha_{ts}$ values and ca
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=\linewidth]{ch.hourglass/images/enhancers_within.png}
+    \includegraphics[width=0.9\linewidth]{ch.hourglass/images/enhancers_within.png}
     \caption{\textbf{Within species dependence of the Jaccard index on the number of enhancers}. \textbf{(A)} The proportion of conserved stage-specific enhancers at each development stage \textit{D. virilis} replicates. \textbf{(B)} The number of time-point specific enhancers for \textit{D. virilis} replicates over time. }
     \label{fig:peak_within}
 \end{figure}
 
 \begin{figure}[H]
     \center
-    \includegraphics[width=0.8\linewidth]{ch.hourglass/images/math_flies.png}
+    \includegraphics[width=0.7\linewidth]{ch.hourglass/images/math_flies.png}
     \caption{\textbf{The Jaccard index landscape for a different ratio of time-point specific enhancers.} This assumes that all enhancers are shared between two species, and $\alpha_{tx}$ is the ratio of total enhancers found at timepoint $t$ for species $x$. The Jaccard index depends on the number of enhancers found and is especially sensitive to the lowest number of enhancers found in the two time series. This effect is present in the real data of figure \ref{fig:peak_between} and figure \ref{fig:peak_within}. }
     \label{fig:peak_math}
 \end{figure}
