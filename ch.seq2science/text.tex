@@ -1,4 +1,5 @@
 \chapter{Seq2science: an end-to-end workflow for functional genomics analysis}\thumbforchapter
+\chaptermark{Seq2science}
 \chapterauthor{Maarten van der Sande*, Siebren Fr{\"o}lich*, Tilman Sch{\"a}fers, Jos Smits, Rebecca R. Snabel, Sybren Rinzema, Simon J. van Heeringen}
 \newpage
 
@@ -14,7 +15,7 @@ Community-oriented workflow collections enable multiple users to contribute work
 
 Although there is a choice of publicly available, published workflows, we found that these did not address all of our requirements. First, apart from some exceptions such as Galaxy, most workflows have not been specifically designed with public data in mind. This requires users to download and prepare the data in advance. While this is doable for small studies, it quickly becomes prohibitive for more large-scale analyses combining data from different studies. Additionally, many workflows have been primarily developed for, and tested on, human and/or mouse data. This limits their applicability to non-model species. It can be cumbersome to add new genomes and supporting gene and transcript annotation. Finally, workflows that do not actively encourage data exploration leave users susceptible to missing biases and failing to uncover concealed insights. Workflows should make sure to include a variety of quality control results and diagnostic plots, as it is essential to check the quality of the data. This includes, for instance, checking mapped data visually using a genome browser. 
 
-To address these limitations, we have developed seq2science, a multi-purpose workflow that supports virtually all public sequencing databases, multiple sequencing assays, and any species of interest. Seq2science is capable of automatically downloading genome assemblies and raw sequencing data from a range of sources. It supports multiple read trimmers, aligners, peak callers, and quantification methods, and generates an extensive quality report and a fully configured UCSC trackhub. It currently supports bulk ChIP-, ATAC- and RNA-seq, downloading of FASTQ files, and a generic genomic alignment workflow. Installation is easy through the Conda package manager, and extensive \href{https://vanheeringen-lab.github.io/seq2science/}{\color{blue}{documentation is available online}}. Seq2science is designed to cater to both intermediate and advanced bioinformaticians. It serves as an accessible starting point for those with a basic grasp of bioinformatics concepts, thanks to its sensible default settings. Additionally, it offers a high degree of customization, making it appealing to advanced users who seek more tailored control over their analyses.
+To address these limitations, we have developed seq2science, a multi-purpose workflow that supports virtually all public sequencing databases, multiple sequencing assays, and any species of interest. Seq2science is capable of automatically downloading genome assemblies and raw sequencing data from a range of sources. It supports multiple read trimmers, aligners, peak callers, and quantification methods, and generates an extensive quality report and a fully configured UCSC trackhub. It currently supports bulk ChIP-, ATAC- and RNA-seq, downloading of FASTQ files, and a generic genomic alignment workflow. Installation is easy through the Conda package manager, and extensive \href{https://vanheeringen-lab.github.io/seq2science/}{documentation is available online}. Seq2science is designed to cater to both intermediate and advanced bioinformaticians. It serves as an accessible starting point for those with a basic grasp of bioinformatics concepts, thanks to its sensible default settings. Additionally, it offers a high degree of customization, making it appealing to advanced users who seek more tailored control over their analyses.
 
 \section{Methods}
 
@@ -24,7 +25,7 @@ Seq2science is built using Snakemake \cite{snakemake}, a portable and open-sourc
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{ch.seq2science/imgs/figure_overview.png}
+	\includegraphics[width=\textwidth]{ch.seq2science/imgs/figure_overview.png}
 	\caption{\label{fig:overview} \textbf{Schematic overview of seq2science}. Seq2science can conceptually be split into six parts: downloading of samples and genome assembly, trimming of reads, transcriptome/genome mapping, quality control, initial analysis, and the final output. For each part the corresponding supported tools are listed. }
 \end{figure}
 
@@ -104,7 +105,7 @@ Seq2science will now start downloading our samples. Samples hosted on GSA, ENCOD
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{ch.seq2science/imgs/zebrafish_fig2.png}
+	\includegraphics[width=\textwidth]{ch.seq2science/imgs/zebrafish_fig2.png}
 	\caption{\label{fig:zebrafish_fig2} \textbf{Result of the differential motif analysis by seq2science between ATAC-seq peaks of different tissues of zebrafish} \cite{Yang2020}. Per tissue, the top two most differentially enriched motifs have been selected, with automatically inferred orthologs. The transcription factor names were manually curated for clarity. The full table with the motif analysis results is included in the quality report (Supplemental File S7).}
 \end{figure}
 
@@ -122,7 +123,7 @@ The seq2science ATAC-seq workflow generated a consensus peak set based on the un
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{ch.seq2science/imgs/figure_acoel.png}
+	\includegraphics[width=\textwidth]{ch.seq2science/imgs/figure_acoel.png}
 	\caption{\label{fig:aah} \textbf{Summary of selected results from the re-analysis of the RNA-seq and ATAC-seq regeneration time series from Gehrke et al}. \textbf{(A)} Heatmap of \textit{Hofstenia miamia} chromatin accessibility during tail regeneration post amputation. ATAC-seq read counts provided by seq2science were log-transformed, and columns were normalized using the z-score. \textbf{(B)} Differential gene expression during tail regeneration. The X axis shows the log2 fold change of 6hpa vs 0hpa; the Y axis shows the -log10 transformed p-value. Significantly changed genes (padj $\leq$ 0.05; log2 fold change $\geq$ 1) are marked in red. Top results were labeled with human ortholog gene families. \textbf{(C)} Motif activity prediction during tail regeneration. The top four motifs, as identified by GimmeMotifs, are shown with the activity z-score predicted by gimme maelstrom. Both Gehrke et al. and our seq2science analysis identified the EGR and NFI motifs as the top differentially active motifs in the knockdown experiment.}
 \end{figure}
 
@@ -134,7 +135,7 @@ In conclusion, this use case reproduced the main findings from the the original 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{ch.seq2science/imgs/dnase.png}
+	\includegraphics[width=\textwidth]{ch.seq2science/imgs/dnase.png}
 	\caption{\label{fig:dnase} \textbf{DNA accessibility at 1.4 million consensus DHSs assayed across 698 samples encapsulated in a visually compressed DHS-by-biosample matrix}. Recurring accessibility patterns indicate extensive sharing across cell contexts. Chromatin accessibility is defined as more than 1 count per million reads. }
 \end{figure}
 
