@@ -14,6 +14,8 @@
 \usepackage[fontsize=13pt]{fontsize}
 \usepackage{dirtytalk}
 
+\usepackage[usestackEOL]{stackengine}
+
 \usepackage{graphicx}  % Required for inserting images
 
 \usepackage{csvsimple}
@@ -28,6 +30,7 @@
 % \usepackage{ragged2e}  % justify text
 \usepackage{amsmath,amssymb}  % math stuff
 \usepackage[margin=0.75in]{geometry}  % margin
+\usepackage{changepage}
 \raggedbottom
 
 
@@ -55,7 +58,7 @@
 \usepackage[Conny]{fncychap}
 \makeatletter
 \newcommand{\chapterauthor}[1]{%
-  {\parindent0pt\vspace*{-25pt}%
+  {\parindent0pt\vspace*{\fill}%
   \linespread{1.1}\large\scshape#1%
   \par\nobreak\vspace*{35pt}}
   \@afterheading%
@@ -120,6 +123,19 @@
     showtabs=false,                  
     tabsize=2
 }
+
+% \usepackage{titletoc}% http://ctan.org/pkg/titletoc
+% \titlecontents*{chapter}% <section-type>
+%   [0pt]% <left>
+%   {}% <above-code>
+%   {\bfseries\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
+%   {}% <numberless-entry-format>
+%   {\bfseries\hfill\contentspage}% <filler-page-format>
+
+% \usepackage{tocloft,calc}
+
+% \renewcommand{\cftchappresnum}{Chapter }
+% \AtBeginDocument{\addtolength\cftchapnumwidth{\widthof{\bfseries Chapter }}}
 
 \newcommand{\fakesection}[1]{%
   \par\refstepcounter{section}% Increase section counter
