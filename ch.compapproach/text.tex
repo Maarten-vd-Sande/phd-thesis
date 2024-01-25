@@ -16,9 +16,9 @@ A useful abstraction to study transcription regulation is a network of transcrip
 
 Computational inference of genome-wide GRNs was made possible with the advent of expression microarrays. Expression levels between transcription factors and their target genes tend to correlate \cite{Ideker_2001} and genes with similar mRNA expression patterns are more likely to be regulated by a common transcription factor \cite{Allocco_2004,Eisen_1998}. This led to the conception of gene co-expression networks, where functional connections between genes are inferred by expression pattern similarity. WGCNA \cite{Zhang_2005} and ARACNe \cite{Margolin_2006} were among the first gene co-expression-based tools and remain popular. Presently, a multitude of GRN inference methods exists. Reviews on the technical details can be found here \cite{Levine_2005,Chasman_2017,Delgado_2019,Mercatelli_2020}. Recent advances in experimental and computational techniques means that GRN inference has progressed beyond simple co-expression. In this review, we will highlight three approaches that have the potential to significantly impact GRN modeling: (1) moving from one modality, gene expression, to multi-omics, (2) single cell sequencing for cell type-specific signal and (3) neural networks as flexible gene regulatory models (Figure \ref{fig:compapproach}).
 
-\begin{figure}[H]
+\begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth]{ch.compapproach/images/compapproach.png}
+	\includegraphics[width=0.9\textwidth]{ch.compapproach/images/compapproach.png}
 	\caption{\label{fig:compapproach}\textbf{Schematic overview of different gene regulatory network inference approaches.} \textbf{(A)} Classical approaches, e.g. correlation, regression or mutual information, can be applied on gene expression data to generate undirected co-expression networks. With prior knowledge about TFs the directionality between TF and target gene can be inferred, however, the directionality between two TFs cannot be established. \textbf{(B)} More recent approaches combine multiple types of genome-wide functional data (multi-omics), with either a classical approach or neural networks to identify directed gene regulatory networks. Single cell sequencing allows for the identification of cell type specific regulatory networks.}
 \end{figure}
 
