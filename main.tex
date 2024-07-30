@@ -1,7 +1,6 @@
-% \documentclass[13pt]{book}
-% \documentclass[13pt]{extbook}
 \documentclass{book}
 \usepackage[paperwidth=17cm, paperheight=24cm, margin=1.5cm]{geometry}
+% \usepackage[paperwidth=17.6cm, paperheight=24.6cm, margin=1.8cm]{geometry}
 
 \usepackage[
     natbib=true,
@@ -40,23 +39,23 @@
 
 % Clear all default header and footer settings
 \fancyhf{}
-\newcommand{\setupcustomheaders}{
-    % Header setup
-    % Even pages: Chapter number and name on the left (LE)
-    \fancyhead[LE]{\leftmark}
-    % Odd pages: Section name on the right (RO)
-    \fancyhead[RO]{\rightmark}
+% \newcommand{\setupcustomheaders}{
+%     % Header setup
+%     % Even pages: Chapter number and name on the left (LE)
+%     \fancyhead[LE]{\leftmark}
+%     % Odd pages: Section name on the right (RO)
+%     \fancyhead[RO]{\rightmark}
         
-    % Apply the fancy page style
-    \pagestyle{fancy}
+%     % Apply the fancy page style
+%     \pagestyle{fancy}
     
-    % Ensure that chapter and section marks are correctly set
-    \renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter: ##1}{}}
-    \renewcommand{\sectionmark}[1]{\markright{Section \thesection: ##1}}
+%     % Ensure that chapter and section marks are correctly set
+%     \renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter: ##1}{}}
+%     \renewcommand{\sectionmark}[1]{\markright{Section \thesection: ##1}}
     
-    % Apply the fancy page style
-    \pagestyle{fancy}
-}
+%     % Apply the fancy page style
+%     \pagestyle{fancy}
+% }
 
 % Remove the header and footer rule lines
 \renewcommand{\headrulewidth}{0pt}
@@ -82,9 +81,15 @@
 
 \usepackage[Lenny]{fncychap}
 \makeatletter
+% \newcommand{\chapterauthor}[1]{%
+%   {\parindent0pt\vspace*{\fill}%
+%   \linespread{1.1}\normalsize\scshape#1%
+%   \par\nobreak\vspace*{5pt}}
+%   \@afterheading%
+% }
 \newcommand{\chapterauthor}[1]{%
   {\parindent0pt\vspace*{\fill}%
-  \linespread{1.1}\normalsize\scshape#1%
+  \linespread{1.1}\normalsize\scshape\raggedleft#1%
   \par\nobreak\vspace*{5pt}}
   \@afterheading%
 }
@@ -174,7 +179,8 @@
   \ifodd\value{page}\hbox{}\newpage\fi
 }
 
-\usepackage[distance={10mm}]{thumbs}
+% \usepackage[distance={10mm}]{thumbs}
+\usepackage[eventxtindent=10pt,oddtxtexdent=10pt,width={13mm},distance={10mm},topthumbmargin={10mm}]{thumbs}
 \newcommand{\thumbforchapter}{\addthumb{Chapter \thechapter}{\Large{\thechapter}}{white}{gray}}
 
 \usepackage[symbol]{footmisc}
@@ -192,7 +198,8 @@
 \begin{document}
 \frontmatter
 \include{ch.prefix/text}
-\mainmatter\setupcustomheaders
+% \mainmatter\setupcustomheaders
+\mainmatter
 \include{ch.introduction/text}
 \include{ch.compapproach/text}
 \include{ch.seq2science/text}
